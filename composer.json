@@ -17,8 +17,6 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "FDekker\\Functional\\": "tests/Functional",
-            "FDekker\\Integration\\": "tests/Integration",
             "FDekker\\Unit\\": "tests/Unit",
             "FDekker\\": "tests/"
         }
