@@ -13,19 +13,28 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(ByWord::class)]
 class ByWordTest extends TestCase
 {
-    public function testGetInlineChunks(): void
+    public function testGetInlineChunksA(): void
     {
-        IntlChar::charType()
+        $text     = "public int";
+        $expected = [
+            new WordChunk($text, 0, 6, 3317543529),
+            new WordChunk($text, 7, 10, 104431),
+        ];
 
+        $chunks = ByWord::getInlineChunks($text);
+        static::assertEquals($expected, $chunks);
+    }
 
-        //$text     = "public int hashCodë() {";
-        //$expected = [
-        //    new WordChunk($text, 0, 6, -977423767),
-        //    new WordChunk($text, 7, 10, 104431),
-        //    new WordChunk($text, 11, 19, 147696801),
-        //];
-        //
-        //$chunks = ByWord::getInlineChunks($text);
-        //static::assertEquals($expected, $chunks);
+    public function testGetInlineChunksB(): void
+    {
+        $text     = "public int codë() {";
+        $expected = [
+            new WordChunk($text, 0, 6, 3317543529),
+            new WordChunk($text, 7, 10, 104431),
+            new WordChunk($text, 11, 15, 3059315),
+        ];
+
+        $chunks = ByWord::getInlineChunks($text);
+        static::assertEquals($expected, $chunks);
     }
 }
