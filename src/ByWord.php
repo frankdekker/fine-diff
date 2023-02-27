@@ -22,7 +22,7 @@ class ByWord
     public static function getInlineChunks(string $text): array
     {
         $charSequence = preg_split('//u', $text, -1, PREG_SPLIT_NO_EMPTY);
-        $len = count($charSequence);
+        $len          = count($charSequence);
 
         $wordStart = -1;
         $wordHash  = 0;
@@ -56,7 +56,7 @@ class ByWord
         }
 
         if ($wordStart !== -1) {
-            $chunks[]  = new WordChunk($text, $wordStart, $len, $wordHash);
+            $chunks[] = new WordChunk($text, $wordStart, $len, $wordHash);
         }
 
         return $chunks;
