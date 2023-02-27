@@ -6,7 +6,7 @@ namespace FDekker;
 use FDekker\Entity\InlineChunk;
 use FDekker\Enum\ComparisonPolicy;
 
-class ByWordRt
+class ByWord
 {
     public function compareAndSplit(string $text1, string $text2, ComparisonPolicy $comparisonPolicy)
     {
@@ -18,5 +18,4 @@ class ByWordRt
     public static function getInlineChunks(string $text): array {
 
     }
-
 }
