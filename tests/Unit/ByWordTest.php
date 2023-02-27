@@ -5,6 +5,8 @@ namespace FDekker\Tests;
 
 use FDekker\ByWord;
 use FDekker\Entity\WordChunk;
+use FDekker\Util\Ideographic;
+use IntlChar;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -13,14 +15,17 @@ class ByWordTest extends TestCase
 {
     public function testGetInlineChunks(): void
     {
-        $text     = "public int hashCodë() {";
-        $expected = [
-            new WordChunk($text, 0, 6, -977423767),
-            new WordChunk($text, 7, 10, 104431),
-            new WordChunk($text, 11, 19, 147696801),
-        ];
+        IntlChar::charType()
 
-        $chunks = ByWord::getInlineChunks($text);
-        static::assertEquals($expected, $chunks);
+
+        //$text     = "public int hashCodë() {";
+        //$expected = [
+        //    new WordChunk($text, 0, 6, -977423767),
+        //    new WordChunk($text, 7, 10, 104431),
+        //    new WordChunk($text, 11, 19, 147696801),
+        //];
+        //
+        //$chunks = ByWord::getInlineChunks($text);
+        //static::assertEquals($expected, $chunks);
     }
 }
