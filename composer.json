@@ -41,7 +41,7 @@
         "check:phpmd": "@php -derror_reporting=24575 vendor/bin/phpmd src,tests text phpmd.xml --suffixes=php",
         "check:phpcs": "@php vendor/bin/phpcs src tests",
         "fix": "@fix:phpcbf",
-        "fix:phpcbf": "phpcbf src tests",
+        "fix:phpcbf": "@php vendor/bin/phpcbf src tests",
         "test": "phpunit",
         "test:functional": "phpunit --testsuite functional",
         "test:integration": "phpunit --testsuite integration",

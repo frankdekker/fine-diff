@@ -31,5 +31,4 @@ class NewLineChunk implements InlineChunk
     {
         return spl_object_id($this);
     }
-
 }
