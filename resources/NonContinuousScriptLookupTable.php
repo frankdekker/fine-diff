@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 /**
  * As certain Unicode methods don't exist in PHP, this is a hardcoded lookup table for the `isContinuousScript` method in
- * @link https://github.com/JetBrains/intellij-community/blob/master/platform/util/diff/src/com/intellij/diff/comparison/TrimUtil.kt
+ * @link https://github.com/JetBrains/intellij-community/blob/master/platform/util/diff/src/com/intellij/diff/comparison/TrimUtil.kt#L33
  * Missing php support for:
  * - Character.isBmpCodePoint
  * - Character.isIdeographic
