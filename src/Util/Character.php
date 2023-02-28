@@ -25,7 +25,10 @@ class Character
             return false;
         }
 
-        return NonContinuousScriptLookupTable::CODEPOINTS[$codePoint] ?? true;
+        static $table;
+        $table ??= require dirname(__DIR__, 2) . '/resources/NonContinuousScriptLookupTable.php';
+
+        return $table[$codePoint] ?? true;
     }
 
     public static function isPunctuation(int $codePoint): bool
