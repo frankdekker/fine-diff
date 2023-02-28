@@ -19,9 +19,6 @@ class Diff
         $startShift = $this->getStartShift($objects1, $objects2);
         $endCut     = $this->getEndCut($objects1, $objects2, $startShift);
 
-        //Ref<Change> changeRef = doBuildChangesFast(objects1.length, objects2.length, startShift, endCut);
-        //    if (changeRef != null) return changeRef.get();
-
         $change = $this->doBuildChangesFast(count($objects1), count($objects2), $startShift, $endCut);
         if ($change !== null) {
             return $change;
