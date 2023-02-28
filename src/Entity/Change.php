@@ -10,15 +10,15 @@ class Change
      * @param int         $line1    Lines of file 1 changed here.
      * @param int         $deleted  Line number of 1st deleted line.
      * @param int         $inserted Line number of 1st inserted line.
+     * @param Change|null $link     Previous or next edit command.
      */
     public function __construct(
         public readonly int $line0,
         public readonly int $line1,
         public readonly int $deleted,
         public readonly int $inserted,
-        //public readonly ?Change $link = null
-    )
-    {
+        public ?Change $link = null
+    ) {
     }
 
     public function isNull(): bool
@@ -31,16 +31,16 @@ class Change
         return sprintf("change[inserted=%d, deleted=%d, line0=%d, line1=%d]", $this->inserted, $this->deleted, $this->line0, $this->line1);
     }
 
-    ///**
-    // * @return Change[]
-    // */
-    //public function toArray(): array
-    //{
-    //    $result = [];
-    //    for ($current = $this; $current !== null; $current = $current->link) {
-    //        $result[] = $current;
-    //    }
-    //
-    //    return $result;
-    //}
+    /**
+     * @return Change[]
+     */
+    public function toArray(): array
+    {
+        $result = [];
+        for ($current = $this; $current !== null; $current = $current->link) {
+            $result[] = $current;
+        }
+
+        return $result;
+    }
 }

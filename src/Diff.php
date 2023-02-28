@@ -6,6 +6,7 @@ namespace FDekker;
 use FDekker\Entity\Change;
 use FDekker\Entity\EquatableInterface;
 use FDekker\Entity\NullChange;
+use FDekker\Util\ChangeBuilder;
 use FDekker\Util\Enumerator;
 
 class Diff
@@ -27,6 +28,14 @@ class Diff
         $enumerator = new Enumerator();
         $ints1      = $enumerator->enumerate($objects1, $startShift, $endCut);
         $ints2      = $enumerator->enumerate($objects2, $startShift, $endCut);
+
+        return $this->doBuildChanges($ints1, $ints2, new ChangeBuilder($startShift));
+    }
+
+
+    private function doBuildChanges(array $ints1, array $ints2, ChangeBuilder $builder): Change {
+        // TODO implement
+        return new NullChange();
     }
 
     /**
