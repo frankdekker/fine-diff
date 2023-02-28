@@ -49,7 +49,7 @@ class ByWord
 
                 if ($isAlpha) { // continuous script
                     $chunks[] = new WordChunk($text, $offset, $offset + $charCount, $ch);
-                } elseif ($char === "\n") {
+                } elseif ($ch === 10) { // 10 === newline
                     $chunks[] = new NewlineChunk($offset);
                 }
             }
