@@ -12,7 +12,7 @@ class BitSet
     /** @var array<int, int> */
     private array $words = [];
 
-    public function set($bitIndex): void
+    public function set(int $bitIndex): void
     {
         $wordIdx = $bitIndex >> self::ADDRESS_BITS_PER_WORD;
         $bitIdx  = $bitIndex & self::WORD_MASK;
@@ -23,7 +23,7 @@ class BitSet
         $this->words[$wordIdx] |= (1 << $bitIdx);
     }
 
-    public function get($bitIndex): bool
+    public function get(int $bitIndex): bool
     {
         $wordIdx = $bitIndex >> self::ADDRESS_BITS_PER_WORD;
         $bitIdx  = $bitIndex & self::WORD_MASK;
