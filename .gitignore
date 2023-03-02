@@ -1,4 +1,5 @@
-/.idea
+/.idea/*
+!/.idea/fileTemplates
 /vendor
 /composer.lock
 /phpunit.xml
