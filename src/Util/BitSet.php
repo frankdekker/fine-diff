@@ -41,7 +41,7 @@ class BitSet
             if ($wordIdx === $startWordIdx) {
                 $this->words[$wordIdx] |= $startBitMask;
             } elseif ($wordIdx === $endWordIdx) {
-                $this->words[$wordIdx] |= $startBitMask;
+                $this->words[$wordIdx] |= $endBitMask;
             } else {
                 $this->words[$wordIdx] |= self::MASK_ALL;
             }

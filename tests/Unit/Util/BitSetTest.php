@@ -13,7 +13,7 @@ class BitSetTest extends TestCase
     public function testGetSetWithinWordBoundary(): void
     {
         $bitSet = new BitSet();
-        $bitSet->setRange(64, 126);
+        $bitSet->set(64, 126);
 
         static::assertFalse($bitSet->get(63));
         static::assertTrue($bitSet->get(64));
@@ -21,14 +21,15 @@ class BitSetTest extends TestCase
         static::assertFalse($bitSet->get(127));
     }
 
-    public function test(): void
+    public function testOutsideWordBoundary(): void
     {
         $bitSet = new BitSet();
-        $bitSet->setRange(1, 62);
+        $bitSet->set(2, 129);
 
-        static::assertFalse($bitSet->get(0));
-        static::assertTrue($bitSet->get(1));
-        static::assertTrue($bitSet->get(62));
-        static::assertFalse($bitSet->get(63));
+        static::assertFalse($bitSet->get(1));
+        static::assertTrue($bitSet->get(2));
+        static::assertTrue($bitSet->get(64));
+        static::assertTrue($bitSet->get(129));
+        static::assertFalse($bitSet->get(130));
     }
 }
