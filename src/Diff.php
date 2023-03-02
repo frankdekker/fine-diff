@@ -8,6 +8,7 @@ use FDekker\Entity\EquatableInterface;
 use FDekker\Entity\NullChange;
 use FDekker\Util\ChangeBuilder;
 use FDekker\Util\Enumerator;
+use FDekker\Util\Reindexer;
 
 class Diff
 {
@@ -15,7 +16,7 @@ class Diff
      * @param EquatableInterface[] $objects1
      * @param EquatableInterface[] $objects2
      */
-    public function buildChanges(array $objects1, array $objects2): Change
+    public function buildChanges(array $objects1, array $objects2): ?Change
     {
         $startShift = $this->getStartShift($objects1, $objects2);
         $endCut     = $this->getEndCut($objects1, $objects2, $startShift);
@@ -32,8 +33,18 @@ class Diff
         return $this->doBuildChanges($ints1, $ints2, new ChangeBuilder($startShift));
     }
 
+    private function doBuildChanges(array $ints1, array $ints2, ChangeBuilder $builder): ?Change
+    {
+        $reindexer = new Reindexer(); // discard unique elements, that have no chance to be matched
+        $discarded = $reindexer->discardUnique($ints1, $ints2);
 
-    private function doBuildChanges(array $ints1, array $ints2, ChangeBuilder $builder): Change {
+        if (count($discarded[0]) === 0 && count($discarded[1]) === 0) {
+            // assert trimmedLength > 0
+            $builder->addChange(count($ints1), count($ints2));
+
+            return $builder->getFirstChange();
+        }
+
         // TODO implement
         return new NullChange();
     }

@@ -18,7 +18,7 @@ class Reindexer
      * @param int[] $ints1
      * @param int[] $ints2
      *
-     * @return int[][]
+     * @return array{0: int[], 1: int[]}
      */
     public function discardUnique(array $ints1, array $ints2): array
     {
