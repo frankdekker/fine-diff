@@ -13,21 +13,11 @@ class BitSetTest extends TestCase
     public function testAccessors(): void
     {
         $bitSet = new BitSet();
+        $bitSet->set(5, 1000000 - 1);
 
-        for ($i = 0; $i < 1000000; $i++) {
-            static::assertFalse($bitSet->get($i), '' . $i);
-
-            $bitSet->set($i);
-            static::assertTrue($bitSet->get($i), '' . $i);
-            static::assertFalse($bitSet->get(32), 'Iteration: ' . $i);
-        }
-    }
-
-    public function test32(): void
-    {
-        $bitSet = new BitSet();
-        $bitSet->set(0);
-        static::assertTrue($bitSet->get(0));
-        static::assertFalse($bitSet->get(32));
+        static::assertFalse($bitSet->get(4));
+        static::assertTrue($bitSet->get(5));
+        static::assertTrue($bitSet->get(999999));
+        static::assertFalse($bitSet->get(1000000));
     }
 }

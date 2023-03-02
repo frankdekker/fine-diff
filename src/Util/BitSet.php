@@ -12,15 +12,14 @@ class BitSet
     /** @var array<int, int> */
     private array $words = [];
 
-    public function set(int $bitIndex): void
+    public function set(int $fromIndex, int $toIndex): void
     {
-        $wordIdx = $bitIndex >> self::ADDRESS_BITS_PER_WORD;
-        $bitIdx  = $bitIndex & self::WORD_MASK;
+        for ($i = $fromIndex; $i <= $toIndex; $i++) {
+            $wordIdx = $i >> self::ADDRESS_BITS_PER_WORD;
+            $bitIdx  = $i & self::WORD_MASK;
 
-        if (isset($this->words[$wordIdx]) === false) {
-            $this->words[$wordIdx] = 0;
+            $this->words[$wordIdx] = ($this->words[$wordIdx] ?? 0) | (1 << $bitIdx);
         }
-        $this->words[$wordIdx] |= (1 << $bitIdx);
     }
 
     public function get(int $bitIndex): bool
@@ -28,10 +27,10 @@ class BitSet
         $wordIdx = $bitIndex >> self::ADDRESS_BITS_PER_WORD;
         $bitIdx  = $bitIndex & self::WORD_MASK;
 
-        return (self::uRShift($this->words[$wordIdx] ?? 0, $bitIdx) & 1) !== 0;
+        return (self::unsignedRightShift($this->words[$wordIdx] ?? 0, $bitIdx) & 1) !== 0;
     }
 
-    private static function uRShift(int $value, int $shiftRight): int
+    private static function unsignedRightShift(int $value, int $shiftRight): int
     {
         return $shiftRight === 0 ? $value : ($value >> $shiftRight) & ~(1 << (8 * PHP_INT_SIZE - 1) >> ($shiftRight - 1));
     }
