@@ -10,14 +10,25 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(BitSet::class)]
 class BitSetTest extends TestCase
 {
-    public function testAccessors(): void
+    public function testGetSetWithinWordBoundary(): void
     {
         $bitSet = new BitSet();
-        $bitSet->set(5, 1000000 - 1);
+        $bitSet->setRange(64, 126);
 
-        static::assertFalse($bitSet->get(4));
-        static::assertTrue($bitSet->get(5));
-        static::assertTrue($bitSet->get(999999));
-        static::assertFalse($bitSet->get(1000000));
+        static::assertFalse($bitSet->get(63));
+        static::assertTrue($bitSet->get(64));
+        static::assertTrue($bitSet->get(126));
+        static::assertFalse($bitSet->get(127));
+    }
+
+    public function test(): void
+    {
+        $bitSet = new BitSet();
+        $bitSet->setRange(1, 62);
+
+        static::assertFalse($bitSet->get(0));
+        static::assertTrue($bitSet->get(1));
+        static::assertTrue($bitSet->get(62));
+        static::assertFalse($bitSet->get(63));
     }
 }
