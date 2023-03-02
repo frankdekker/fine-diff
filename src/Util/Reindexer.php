@@ -6,13 +6,13 @@ namespace FDekker\Util;
 class Reindexer
 {
     /** @var int[][] */
-    private array $myOldIndices = [];
+    private array $oldIndices = [];
 
     /** @var array{0: int, 1: int} */
-    private array $myOriginalLengths = [-1, 1];
+    private array $originalLengths = [-1, 1];
 
     /** @var array{0: int, 1: int} */
-    private array $myDiscardedLengths = [-1, 1];
+    private array $discardedLengths = [-1, 1];
 
     /**
      * @param int[] $ints1
@@ -35,23 +35,13 @@ class Reindexer
      */
     private function discard(array $needed, array $toDiscard, int $arrayIndex): array
     {
-        $this->myOriginalLengths[$arrayIndex] = count($toDiscard);
+        $discarded = array_intersect($toDiscard, $needed);
 
-        $sorted     = array_flip($needed);
-        $discarded  = [];
-        $oldIndices = [];
+        $this->oldIndices[$arrayIndex]       = array_keys($discarded);
+        $this->originalLengths[$arrayIndex]  = count($toDiscard);
+        $this->discardedLengths[$arrayIndex] = count($discarded);
 
-        foreach ($toDiscard as $i => $iValue) {
-            if (isset($sorted[$iValue])) {
-                $discarded[]  = $iValue;
-                $oldIndices[] = $i;
-            }
-        }
-
-        $this->myOldIndices[$arrayIndex]       = $oldIndices;
-        $this->myDiscardedLengths[$arrayIndex] = count($discarded);
-
-        return $discarded;
+        return array_values($discarded);
     }
 
     /**
