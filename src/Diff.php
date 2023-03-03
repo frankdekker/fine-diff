@@ -45,6 +45,8 @@ class Diff
             return $builder->getFirstChange();
         }
 
+        $changes = [];
+
         // TODO implement
         return new NullChange();
     }

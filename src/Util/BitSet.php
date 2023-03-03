@@ -56,6 +56,10 @@ class BitSet
         return (($this->words[$wordIdx] ?? 0) & (1 << $bitIdx)) !== 0;
     }
 
+    public function clear(int $fromIndex, int $toIndex): void {
+        // TODO
+    }
+
     public function __toString(): string
     {
         $result = '';
