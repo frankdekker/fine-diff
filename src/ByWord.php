@@ -12,6 +12,8 @@ use IntlChar;
 
 class ByWord
 {
+    private const NEW_LINE = 10;
+
     public function compareAndSplit(string $text1, string $text2, ComparisonPolicy $comparisonPolicy)
     {
     }
@@ -22,16 +24,13 @@ class ByWord
     public static function getInlineChunks(string $text): array
     {
         $charSequence = preg_split('//u', $text, -1, PREG_SPLIT_NO_EMPTY);
-        $len          = count($charSequence);
 
         $wordStart = -1;
         $wordHash  = 0;
         $chunks    = [];
 
         foreach ($charSequence as $offset => $char) {
-            $ch        = IntlChar::ord($char);
-            $charCount = Character::charCount($ch);
-
+            $ch         = IntlChar::ord($char);
             $isAlpha    = Character::isAlpha($ch);
             $isWordPart = $isAlpha && Character::isContinuousScript($ch) === false;
 
@@ -48,15 +47,15 @@ class ByWord
                 }
 
                 if ($isAlpha) { // continuous script
-                    $chunks[] = new WordChunk($text, $offset, $offset + $charCount, $ch);
-                } elseif ($ch === 10) { // 10 === newline
+                    $chunks[] = new WordChunk($text, $offset, $offset + 1, $ch);
+                } elseif ($ch === self::NEW_LINE) {
                     $chunks[] = new NewlineChunk($offset);
                 }
             }
         }
 
         if ($wordStart !== -1) {
-            $chunks[] = new WordChunk($text, $wordStart, $len, $wordHash);
+            $chunks[] = new WordChunk($text, $wordStart, count($charSequence), $wordHash);
         }
 
         return $chunks;

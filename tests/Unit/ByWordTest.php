@@ -35,6 +35,10 @@ class ByWordTest extends TestCase
 
         $chunks = ByWord::getInlineChunks($text);
         static::assertEquals($expected, $chunks);
+
+        /** @var WordChunk $chunk */
+        $chunk = $chunks[2];
+        static::assertSame("codë", $chunk->getContent());
     }
 
     public function testGetInlineChunksNewLinesA(): void

@@ -14,7 +14,7 @@ class WordChunk implements InlineChunk
 
     public function getContent(): string
     {
-        return substr($this->text, $this->offset1, $this->offset2 - $this->offset1);
+        return mb_substr($this->text, $this->offset1, $this->offset2 - $this->offset1);
     }
 
     public function getOffset1(): int
