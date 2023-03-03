@@ -8,9 +8,9 @@ use FDekker\Entity\EquatableInterface;
 class Enumerator
 {
     /** @var array<int, EquatableInterface> */
-    private array $myNumbers = [];
+    private array $numbers = [];
 
-    private int $myNextNumber = 1;
+    private int $nextNumber = 1;
 
     /**
      * @param EquatableInterface[] $objects
@@ -29,12 +29,12 @@ class Enumerator
         return $idx;
     }
 
-    public function enumerateObject(EquatableInterface $object): int
+    private function enumerateObject(EquatableInterface $object): int
     {
         $number = $this->getInt($object);
         if ($number === 0) {
-            $number                   = $this->myNextNumber++;
-            $this->myNumbers[$number] = $object;
+            $number                 = $this->nextNumber++;
+            $this->numbers[$number] = $object;
         }
 
         return $number;
@@ -42,7 +42,7 @@ class Enumerator
 
     private function getInt(EquatableInterface $object): int
     {
-        foreach ($this->myNumbers as $number => $entry) {
+        foreach ($this->numbers as $number => $entry) {
             if ($entry->equals($object)) {
                 return $number;
             }
