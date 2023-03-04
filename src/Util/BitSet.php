@@ -14,8 +14,10 @@ class BitSet
     /** @var array<int, int> */
     private array $words = [];
 
-    public function set(int $fromIndex, int $toIndex): void
+    public function set(int $fromIndex, ?int $toIndex = null): void
     {
+        // TODO add test with only single argument
+        $toIndex      ??= $fromIndex;
         $startWordIdx = $fromIndex >> self::ADDRESS_BITS_PER_WORD;
         $endWordIdx   = $toIndex >> self::ADDRESS_BITS_PER_WORD;
 
@@ -56,7 +58,8 @@ class BitSet
         return (($this->words[$wordIdx] ?? 0) & (1 << $bitIdx)) !== 0;
     }
 
-    public function clear(int $fromIndex, int $toIndex): void {
+    public function clear(int $fromIndex, int $toIndex): void
+    {
         // TODO
     }
 

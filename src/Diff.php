@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace FDekker;
 
+use FDekker\Diff\DiffConfig;
+use FDekker\Diff\FilesTooBigForDiffException;
+use FDekker\Diff\MyersLCS;
+use FDekker\Diff\PatienceIntLCS;
 use FDekker\Entity\Change;
 use FDekker\Entity\EquatableInterface;
 use FDekker\Entity\NullChange;
@@ -15,6 +19,8 @@ class Diff
     /**
      * @param EquatableInterface[] $objects1
      * @param EquatableInterface[] $objects2
+     *
+     * @throws FilesTooBigForDiffException
      */
     public function buildChanges(array $objects1, array $objects2): ?Change
     {
@@ -33,6 +39,9 @@ class Diff
         return $this->doBuildChanges($ints1, $ints2, new ChangeBuilder($startShift));
     }
 
+    /**
+     * @throws FilesTooBigForDiffException
+     */
     private function doBuildChanges(array $ints1, array $ints2, ChangeBuilder $builder): ?Change
     {
         $reindexer = new Reindexer(); // discard unique elements, that have no chance to be matched
@@ -45,10 +54,25 @@ class Diff
             return $builder->getFirstChange();
         }
 
-        $changes = [];
+        if (DiffConfig::USE_PATIENCE_ALG) {
+            $patienceIntLCS = new PatienceIntLCS($discarded[0], $discarded[1]);
+            $patienceIntLCS->execute();
+            $changes = $patienceIntLCS->getChanges();
+        } else {
+            try {
+                $intLCS = new MyersLCS($discarded[0], $discarded[1]);
+                $intLCS->executeWithThreshold();
+                $changes = $intLCS->getChanges();
+            } catch (FilesTooBigForDiffException) {
+                $patienceIntLCS = new PatienceIntLCS($discarded[0], $discarded[1]);
+                $patienceIntLCS->execute(true);
+                $changes = $patienceIntLCS->getChanges();
+            }
+        }
 
-        // TODO implement
-        return new NullChange();
+        $reindexer->reindex($changes, $builder);
+
+        return $builder->getFirstChange();
     }
 
     /**
