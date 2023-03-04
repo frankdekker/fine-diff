@@ -13,6 +13,9 @@ use RuntimeException;
  */
 class MyersLCS
 {
+    private int $count1;
+    private int $count2;
+
     /** @var int[] */
     private array $vForward = [];
     /** @var int[] */
