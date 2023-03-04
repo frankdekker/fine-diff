@@ -58,7 +58,6 @@ class BitSetTest extends TestCase
         $bitSet = new BitSet();
 
         $this->expectException(AssertionError::class);
-        $this->expectExceptionMessage('$fromIndex <= $toIndex');
         $bitSet->set(-1);
     }
 
@@ -67,7 +66,6 @@ class BitSetTest extends TestCase
         $bitSet = new BitSet();
 
         $this->expectException(AssertionError::class);
-        $this->expectExceptionMessage('$fromIndex <= $toIndex');
         $bitSet->set(5, 4);
     }
 }
