@@ -84,10 +84,12 @@ class BitSetTest extends TestCase
         $bitSet = new BitSet();
         $bitSet->set(63, 65);
 
+        static::assertFalse($bitSet->get(62));
         static::assertTrue($bitSet->get(63));
         static::assertTrue($bitSet->get(64));
 
         $bitSet->clear(63);
+        static::assertFalse($bitSet->get(62));
         static::assertFalse($bitSet->get(63));
         static::assertTrue($bitSet->get(64));
     }
