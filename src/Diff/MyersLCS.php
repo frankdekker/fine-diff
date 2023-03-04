@@ -104,9 +104,10 @@ class MyersLCS
                 $R = $newLength + min($d, $oldLength - (($d ^ $oldLength) & 1));
 
                 for ($k = $L; $k <= $R; $k += 2) {
-                    $x                  = $k === $L || $k !== $R && $this->vForward[$k - 1] < $this->vForward[$k + 1]
+                    $x = ($k === $L || ($k !== $R && $this->vForward[$k - 1] < $this->vForward[$k + 1]))
                         ? $this->vForward[$k + 1]
                         : $this->vForward[$k - 1] + 1;
+
                     $y                  = $x - $k + $newLength;
                     $x                  += $this->commonSubsequenceLengthForward(
                         $oldStart + $x,
@@ -130,9 +131,10 @@ class MyersLCS
                 }
 
                 for ($k = $L; $k <= $R; $k += 2) {
-                    $x                   = $k === $L || $k !== $R && $this->vBackward[$k - 1] < $this->vBackward[$k + 1]
+                    $x = ($k === $L || ($k !== $R && $this->vBackward[$k - 1] < $this->vBackward[$k + 1]))
                         ? $this->vBackward[$k + 1]
                         : $this->vBackward[$k - 1] + 1;
+
                     $y                   = $x - $k + $newLength;
                     $x                   += $this->commonSubsequenceLengthBackward(
                         $oldEnd - 1 - $x,
