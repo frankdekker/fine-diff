@@ -14,10 +14,22 @@ class BitSet
     /** @var array<int, int> */
     private array $words = [];
 
+    /**
+     * Sets the bits from the specified $fromIndex (inclusive) to the
+     * specified `toIndex` (exclusive) to `true`.
+     *
+     * @param int  $fromIndex index of the first bit to be set
+     * @param ?int $toIndex   index after the last bit to be set
+     */
     public function set(int $fromIndex, ?int $toIndex = null): void
     {
-        // TODO add test with only single argument
-        $toIndex      ??= $fromIndex;
+        if ($fromIndex === $toIndex) {
+            return;
+        }
+
+        $toIndex = $toIndex === null ? $fromIndex : $toIndex - 1;
+        assert($fromIndex >= 0 && $fromIndex <= $toIndex);
+
         $startWordIdx = $fromIndex >> self::ADDRESS_BITS_PER_WORD;
         $endWordIdx   = $toIndex >> self::ADDRESS_BITS_PER_WORD;
 
