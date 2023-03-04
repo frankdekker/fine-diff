@@ -23,41 +23,22 @@ class BitSet
      */
     public function set(int $fromIndex, ?int $toIndex = null): void
     {
-        if ($fromIndex === $toIndex) {
-            return;
-        }
-
-        $toIndex = $toIndex === null ? $fromIndex : $toIndex - 1;
-        assert($fromIndex >= 0 && $fromIndex <= $toIndex);
-
-        $startWordIdx = $fromIndex >> self::ADDRESS_BITS_PER_WORD;
-        $endWordIdx   = $toIndex >> self::ADDRESS_BITS_PER_WORD;
-
-        // calculate the bit mask from the starting index: 111111111100
-        $startBitMask = $fromIndex === 0 ? self::MASK_ALL : ((1 << ($fromIndex & self::WORD_MASK)) - 1) ^ self::MASK_ALL;
-
-        // calculate the bit mask till to end index: 001111111111
-        $endBitIdx  = (1 << ($toIndex & self::WORD_MASK));
-        $endBitMask = $toIndex === (self::MAX_WORD_SLOT - 1) ? self::MASK_ALL : $endBitIdx | ($endBitIdx - 1);
-
-        // start and end within same word, combine mask and add to words
-        if ($startWordIdx === $endWordIdx) {
-            $this->words[$startWordIdx] ??= 0;
-            $this->words[$startWordIdx] |= ($startBitMask & $endBitMask);
-
-            return;
-        }
-
-        // loop over the word indices, add the start, all, or end masks to the list
-        for ($wordIdx = $startWordIdx; $wordIdx <= $endWordIdx; $wordIdx++) {
+        foreach (self::getWords($fromIndex, $toIndex) as $wordIdx => $value) {
             $this->words[$wordIdx] ??= 0;
+            $this->words[$wordIdx] |= $value;
+        }
+    }
 
-            if ($wordIdx === $startWordIdx) {
-                $this->words[$wordIdx] |= $startBitMask;
-            } elseif ($wordIdx === $endWordIdx) {
-                $this->words[$wordIdx] |= $endBitMask;
-            } else {
-                $this->words[$wordIdx] |= self::MASK_ALL;
+    public function clear(int $fromIndex, ?int $toIndex = null): void
+    {
+        foreach (self::getWords($fromIndex, $toIndex) as $wordIdx => $value) {
+            if (isset($this->words[$wordIdx]) === false) {
+                continue;
+            }
+
+            $this->words[$wordIdx] &= self::MASK_ALL ^ $value;
+            if ($this->words[$wordIdx] === 0) {
+                unset($this->words[$wordIdx]);
             }
         }
     }
@@ -70,11 +51,6 @@ class BitSet
         return (($this->words[$wordIdx] ?? 0) & (1 << $bitIdx)) !== 0;
     }
 
-    public function clear(int $fromIndex, int $toIndex): void
-    {
-        // TODO
-    }
-
     public function __toString(): string
     {
         $result = '';
@@ -83,5 +59,49 @@ class BitSet
         }
 
         return $result;
+    }
+
+    /**
+     * @return array<int, int>
+     */
+    private function getWords(int $fromIndex, ?int $toIndex = null): array
+    {
+        if ($fromIndex === $toIndex) {
+            return [];
+        }
+
+        $toIndex = $toIndex === null ? $fromIndex : $toIndex - 1;
+        assert($fromIndex >= 0 && $fromIndex <= $toIndex);
+
+        $startWordIdx = $fromIndex >> self::ADDRESS_BITS_PER_WORD;
+        $endWordIdx   = $toIndex >> self::ADDRESS_BITS_PER_WORD;
+
+        // calculate the bit mask from the starting index: 111111111100
+        $startBitMask = -1 << ($fromIndex % self::MAX_WORD_SLOT);
+
+        // calculate the bit mask till to end index: 001111111111
+        $endBitMask = (-1 << (($toIndex % self::MAX_WORD_SLOT) + 1)) ^ -1;
+
+        $words = [];
+
+        // start and end within same word, combine mask and add to words
+        if ($startWordIdx === $endWordIdx) {
+            $words[$startWordIdx] = ($startBitMask & $endBitMask);
+
+            return $words;
+        }
+
+        // loop over the word indices, add the start, all, or end masks to the list
+        for ($wordIdx = $startWordIdx; $wordIdx <= $endWordIdx; $wordIdx++) {
+            if ($wordIdx === $startWordIdx) {
+                $words[$wordIdx] = $startBitMask;
+            } elseif ($wordIdx === $endWordIdx) {
+                $words[$wordIdx] = $endBitMask;
+            } else {
+                $words[$wordIdx] = self::MASK_ALL;
+            }
+        }
+
+        return $words;
     }
 }
