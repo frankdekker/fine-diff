@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace FDekker\Diff\Iterable;
 
 use FDekker\Entity\Range;
+use Traversable;
 
 /**
  * @implements CursorIteratorInterface<Range>
@@ -25,5 +26,15 @@ class ChangedIterator implements CursorIteratorInterface
         $this->iterable->next();
 
         return $range;
+    }
+
+    /**
+     * @return Traversable<Range>
+     */
+    public function getIterator(): Traversable
+    {
+        while ($this->hasNext()) {
+            yield $this->next();
+        }
     }
 }

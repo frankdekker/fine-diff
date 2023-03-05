@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FDekker\ChunkOptimizer;
 
+use FDekker\Diff\DiffIterableUtil;
 use FDekker\Diff\Iterable\FairDiffIterableInterface;
 use FDekker\Entity\Range;
 use FDekker\Entity\Side;
@@ -30,14 +31,12 @@ abstract class AbstractChunkOptimizer
 
     public function build(): FairDiffIterableInterface
     {
-        $unchanged = $this->iterable->unchanged();
-        while ($unchanged->hasNext()) {
-            $this->ranges[] = $unchanged->next();
+        foreach ($this->iterable->unchanged() as $range) {
+            $this->ranges[] = $range;
             $this->processLastRanges();
         }
 
-        // TODO add  fair(createUnchanged(myRanges, myData1.size(), myData2.size()));
-        return null;
+        return DiffIterableUtil::fair(DiffIterableUtil::createUnchanged($this->ranges, count($this->data1), count($this->data2)));
     }
 
     private function processLastRanges(): void
