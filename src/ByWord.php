@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FDekker;
 
+use FDekker\Diff\FilesTooBigForDiffException;
 use FDekker\Entity\InlineChunk;
 use FDekker\Entity\NewLineChunk;
 use FDekker\Entity\WordChunk;
@@ -14,8 +15,18 @@ class ByWord
 {
     private const NEW_LINE = 10;
 
-    public function compareAndSplit(string $text1, string $text2, ComparisonPolicy $comparisonPolicy)
+    /**
+     * @throws FilesTooBigForDiffException
+     */
+    public function compareAndSplit(string $text1, string $text2, ComparisonPolicy $comparisonPolicy): void
     {
+        // TODO finish all calls
+        $inlineChunksA = ByWord::getInlineChunks($text1);
+        $inlineChunksB = ByWord::getInlineChunks($text2);
+
+        $changes = (new Diff())->buildChanges($inlineChunksA, $inlineChunksB);
+        // wordChanges = optimizeWordChunks(text1, text2, words1, words2, wordChanges, indicator);
+
     }
 
     /**
