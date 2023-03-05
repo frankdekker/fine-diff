@@ -1,9 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Diff;
+namespace FDekker\Diff\LCS;
 
+use FDekker\Diff\FilesTooBigForDiffException;
 use FDekker\Util\BitSet;
+use function FDekker\Diff\count;
 
 class PatienceIntLCS
 {

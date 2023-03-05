@@ -5,8 +5,8 @@ namespace FDekker;
 
 use FDekker\Diff\DiffConfig;
 use FDekker\Diff\FilesTooBigForDiffException;
-use FDekker\Diff\MyersLCS;
-use FDekker\Diff\PatienceIntLCS;
+use FDekker\Diff\LCS\MyersLCS;
+use FDekker\Diff\LCS\PatienceIntLCS;
 use FDekker\Entity\Change;
 use FDekker\Entity\EquatableInterface;
 use FDekker\Entity\NullChange;

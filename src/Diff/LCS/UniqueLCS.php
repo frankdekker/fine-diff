@@ -1,9 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Diff;
+namespace FDekker\Diff\LCS;
 
 use FDekker\Util\Arrays;
+use function count;
 
 class UniqueLCS
 {
