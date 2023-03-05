@@ -113,5 +113,5 @@ abstract class AbstractChunkOptimizer
      * >0 - shift forward
      * <0 - shift backward
      */
-    abstract protected function getShift(Side $touchSide, int $equalForward, int $equalBackward, Range $range1, Range $range2);
+    abstract protected function getShift(Side $touchSide, int $equalForward, int $equalBackward, Range $range1, Range $range2): int;
 }
