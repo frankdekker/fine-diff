@@ -3,20 +3,16 @@ declare(strict_types=1);
 
 namespace FDekker\Tests\Diff\Iterable;
 
-use FDekker\Diff\Iterable\DiffChangeChangeIterable;
 use FDekker\Diff\Iterable\DiffChangeDiffIterable;
 use FDekker\Diff\Iterable\DiffIterableInterface;
 use FDekker\Diff\Iterable\FairDiffIterableWrapper;
 use FDekker\Entity\Change;
-use PHPUnit\Framework\TestCase;
-
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(FairDiffIterableWrapper::class)]
 class FairDiffIterableWrapperTest extends TestCase
 {
-
-
     public function testChanges(): void
     {
         $iterable = $this->createMock(DiffIterableInterface::class);
