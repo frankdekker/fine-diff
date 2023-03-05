@@ -26,10 +26,6 @@ class RangeTest extends TestCase
         static::assertSame('[10, 20] - [30, 40]', (string)$range);
     }
 
-    public function testHashCode(): void
-    {
-    }
-
     public function testEqualsDifferentObjectType(): void
     {
         $range = new Range(10, 20, 30, 40);
