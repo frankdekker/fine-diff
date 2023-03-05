@@ -40,6 +40,6 @@ class Range implements EquatableInterface, Stringable
 
     public function __toString(): string
     {
-        return "[" . $this->start1 . ", " . $this->end1 . ") - [" . $this->start2 . ", " . $this->end2 . ")";
+        return "[" . $this->start1 . ", " . $this->end1 . "] - [" . $this->start2 . ", " . $this->end2 . "]";
     }
 }
