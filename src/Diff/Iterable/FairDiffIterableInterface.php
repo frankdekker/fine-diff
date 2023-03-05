@@ -9,8 +9,7 @@ namespace FDekker\Diff\Iterable;
  * If range [a, b) is equal to [a', b'), than element(a + i) is equal to element(a' + i) for all i in [0, b-a)
  * Therefore, {@link self::unchanged} ranges are guaranteed to have {@link DiffIterableUtil::getRangeDelta(Range)} equal to 0.
  *
- * @see DiffIterableUtil::fair(DiffIterable)
- * @see DiffIterableUtil::verifyFair(DiffIterable)
+ * @see DiffIterableUtil::fair(DiffIterableInterface)
  */
 interface FairDiffIterableInterface extends DiffIterableInterface
 {
