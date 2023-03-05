@@ -21,7 +21,7 @@ class ChangedIterator implements CursorIteratorInterface
 
     public function next(): Range
     {
-        $range = new Range($this->iterable->getStart1(), $this->iterable->getEnd1(), $this->iterable->getStart2(), $this->iterable->getEnd1());
+        $range = new Range($this->iterable->getStart1(), $this->iterable->getEnd1(), $this->iterable->getStart2(), $this->iterable->getEnd2());
         $this->iterable->next();
 
         return $range;
