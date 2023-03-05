@@ -11,14 +11,14 @@ interface DiffIterableInterface
     public function getLength2(): int;
 
     /**
-     * @return iterable<Range>
+     * @return CursorIteratorInterface<Range>
      */
-    public function changes(): iterable;
+    public function changes(): CursorIteratorInterface;
 
     /**
-     * @return iterable<Range>
+     * @return CursorIteratorInterface<Range>
      */
-    public function unchanged(): iterable;
+    public function unchanged(): CursorIteratorInterface;
 
 
 }

@@ -3,9 +3,14 @@ declare(strict_types=1);
 
 namespace FDekker\Diff\Iterable;
 
+use FDekker\Util\Range;
+
+/**
+ * @extends CursorIteratorInterface<Range>
+ */
 interface ChangeIterableInterface
 {
-    public function isValid(): bool;
+    public function valid(): bool;
 
     public function next(): void;
 

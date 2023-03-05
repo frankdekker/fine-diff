@@ -3,18 +3,27 @@ declare(strict_types=1);
 
 namespace FDekker\Diff\Iterable;
 
-use IteratorAggregate;
-use Traversable;
+use FDekker\Util\Range;
 
 /**
- * @implements IteratorAggregate<Ran
+ * @implements CursorIteratorInterface<Range>
  */
-class ChangedIterator implements IteratorAggregate
+class ChangedIterator implements CursorIteratorInterface
 {
-    public function __construct(private readonly ChangeIterableInterface $iterable) {
+    public function __construct(private readonly ChangeIterableInterface $iterable)
+    {
     }
 
-    public function getIterator(): Traversable
+    public function hasNext(): bool
     {
+        return $this->iterable->valid();
+    }
+
+    public function next(): Range
+    {
+        $range = new Range($this->iterable->getStart1(), $this->iterable->getEnd1(), $this->iterable->getStart2(), $this->iterable->getEnd1());
+        $this->iterable->next();
+
+        return $range;
     }
 }
