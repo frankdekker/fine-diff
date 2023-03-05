@@ -24,6 +24,7 @@ class ByWord
     public static function getInlineChunks(string $text): array
     {
         $charSequence = preg_split('//u', $text, -1, PREG_SPLIT_NO_EMPTY);
+        assert($charSequence !== false);
 
         $wordStart = -1;
         $wordHash  = 0;

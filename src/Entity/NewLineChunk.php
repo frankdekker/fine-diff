@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 namespace FDekker\Entity;
 
-/**
- * @implements InlineChunk<NewLineChunk>
- */
 class NewLineChunk implements InlineChunk
 {
     public function __construct(private int $offset)
@@ -22,12 +19,9 @@ class NewLineChunk implements InlineChunk
         return $this->offset + 1;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function equals(EquatableInterface $object): bool
     {
-        return $object instanceof $this;
+        return $object instanceof self;
     }
 
     public function hashCode(): int

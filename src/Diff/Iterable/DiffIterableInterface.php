@@ -3,11 +3,12 @@ declare(strict_types=1);
 
 namespace FDekker\Diff\Iterable;
 
-use Symfony\Component\Validator\Constraints\Range;
+use FDekker\Entity\Range;
 
 interface DiffIterableInterface
 {
     public function getLength1(): int;
+
     public function getLength2(): int;
 
     /**
@@ -19,6 +20,4 @@ interface DiffIterableInterface
      * @return CursorIteratorInterface<Range>
      */
     public function unchanged(): CursorIteratorInterface;
-
-
 }

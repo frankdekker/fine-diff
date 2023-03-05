@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace FDekker\Diff\Iterable;
 
-use FDekker\Util\Range;
+use FDekker\Entity\Range;
 
 /**
  * @implements CursorIteratorInterface<Range>
@@ -36,7 +36,7 @@ class UnchangedIterator implements CursorIteratorInterface
             $this->lastIndex1 = $this->iterable->getEnd1();
             $this->lastIndex2 = $this->iterable->getEnd2();
 
-            $this->iterable->next();;
+            $this->iterable->next();
 
             return $chunk;
         }

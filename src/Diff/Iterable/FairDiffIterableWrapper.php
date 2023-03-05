@@ -5,7 +5,8 @@ namespace FDekker\Diff\Iterable;
 
 class FairDiffIterableWrapper implements FairDiffIterableInterface
 {
-    public function __construct(private readonly DiffIterableInterface $iterable) {
+    public function __construct(private readonly DiffIterableInterface $iterable)
+    {
     }
 
     public function getLength1(): int
@@ -21,7 +22,7 @@ class FairDiffIterableWrapper implements FairDiffIterableInterface
     /**
      * @inheritDoc
      */
-    public function changes(): iterable
+    public function changes(): CursorIteratorInterface
     {
         return $this->iterable->changes();
     }
@@ -29,7 +30,7 @@ class FairDiffIterableWrapper implements FairDiffIterableInterface
     /**
      * @inheritDoc
      */
-    public function unchanged(): iterable
+    public function unchanged(): CursorIteratorInterface
     {
         return $this->iterable->unchanged();
     }

@@ -6,5 +6,5 @@ namespace FDekker\Util;
 interface LCSBuilderInterface
 {
     public function addEqual(int $length): void;
-    public function addChange(int $first, int $second);
+    public function addChange(int $first, int $second): void;
 }

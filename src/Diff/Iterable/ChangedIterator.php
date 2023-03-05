@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace FDekker\Diff\Iterable;
 
-use FDekker\Util\Range;
+use FDekker\Entity\Range;
 
 /**
  * @implements CursorIteratorInterface<Range>

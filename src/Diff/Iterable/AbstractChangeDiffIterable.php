@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace FDekker\Diff\Iterable;
 
+use FDekker\Entity\Range;
+
 /**
  * Represents computed differences between two sequences.
  * <p>
@@ -10,7 +12,6 @@ namespace FDekker\Diff\Iterable;
  * <p>
  * Differences are guaranteed to be 'squashed': there are no two changed or two unchanged {@link Range} with
  * <code>(range1.end1 == range2.start1 && range1.end2 == range2.start2)</code>.
- *
  * @see FairDiffIterableInterface
  * @see DiffIterableUtil::iterateAll(DiffIterable)
  * @see DiffIterableUtil::verify(DiffIterable)

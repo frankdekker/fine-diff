@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 namespace FDekker\Entity;
 
-/**
- * @implements InlineChunk<WordChunk>
- */
 class WordChunk implements InlineChunk
 {
     public function __construct(private string $text, private int $offset1, private int $offset2, private int $hash)
@@ -27,9 +24,6 @@ class WordChunk implements InlineChunk
         return $this->offset2;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function equals(EquatableInterface $object): bool
     {
         if ($object instanceof self === false) {

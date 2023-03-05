@@ -43,7 +43,8 @@ class Reindexer
             while ($x < $this->discardedLengths[0] || $y < $this->discardedLengths[1]) {
                 if (($x < $this->discardedLengths[0] && $y < $this->discardedLengths[1])
                     && $discardedChanges[0]->has($x) === false
-                    && $discardedChanges[1]->has($y) === false) {
+                    && $discardedChanges[1]->has($y) === false
+                ) {
                     $x = self::increment($this->oldIndices[0], $x, $changes1, $this->originalLengths[0]);
                     $y = self::increment($this->oldIndices[1], $y, $changes2, $this->originalLengths[1]);
                 } elseif ($discardedChanges[0]->has($x)) {
@@ -100,8 +101,9 @@ class Reindexer
     }
 
     /**
-     * @param int[] $needed
-     * @param int[] $toDiscard
+     * @param int[]    $needed
+     * @param int[]    $toDiscard
+     * @param int<0,1> $arrayIndex
      *
      * @return int[]
      */

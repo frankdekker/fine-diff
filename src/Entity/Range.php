@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Util;
+namespace FDekker\Entity;
 
-use FDekker\Entity\EquatableInterface;
 use Stringable;
 
 class Range implements EquatableInterface, Stringable

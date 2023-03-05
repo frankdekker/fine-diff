@@ -40,6 +40,8 @@ class Diff
     }
 
     /**
+     * @param int[] $ints1
+     * @param int[] $ints2
      * @throws FilesTooBigForDiffException
      */
     private function doBuildChanges(array $ints1, array $ints2, ChangeBuilder $builder): ?Change
