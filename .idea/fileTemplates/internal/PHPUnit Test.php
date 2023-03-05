@@ -6,9 +6,9 @@ namespace ${NAMESPACE};
 #end
 
 use ${TESTED_NAMESPACE}\\${TESTED_NAME};
-use DR\Review\Tests\AbstractTestCase;
+use PHPUnit\Framework\Testcase;
 
 #parse("PHPUnit Class Doc Comment.php")
-class ${NAME} extends AbstractTestCase
+class ${NAME} extends TestCase
 {
 }

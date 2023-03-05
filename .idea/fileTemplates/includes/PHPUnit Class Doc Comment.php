@@ -1,1 +1,3 @@
-#[CoversClass(${TESTED_NAME}::class)
+use PHPUnit\Framework\Attributes\CoversClass;
+
+#[CoversClass(${TESTED_NAME}::class)]
