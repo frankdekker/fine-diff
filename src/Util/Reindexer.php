@@ -42,14 +42,14 @@ class Reindexer
             $x = $y = 0;
             while ($x < $this->discardedLengths[0] || $y < $this->discardedLengths[1]) {
                 if (($x < $this->discardedLengths[0] && $y < $this->discardedLengths[1])
-                    && $discardedChanges[0]->get($x) === false
-                    && $discardedChanges[1]->get($y) === false) {
+                    && $discardedChanges[0]->has($x) === false
+                    && $discardedChanges[1]->has($y) === false) {
                     $x = self::increment($this->oldIndices[0], $x, $changes1, $this->originalLengths[0]);
                     $y = self::increment($this->oldIndices[1], $y, $changes2, $this->originalLengths[1]);
-                } elseif ($discardedChanges[0]->get($x)) {
+                } elseif ($discardedChanges[0]->has($x)) {
                     $changes1->set(self::getOriginal($this->oldIndices[0], $x));
                     $x = self::increment($this->oldIndices[0], $x, $changes1, $this->originalLengths[0]);
-                } elseif ($discardedChanges[1]->get($y)) {
+                } elseif ($discardedChanges[1]->has($y)) {
                     $changes2->set(self::getOriginal($this->oldIndices[1], $y));
                     $y = self::increment($this->oldIndices[1], $y, $changes2, $this->originalLengths[1]);
                 }
@@ -71,7 +71,7 @@ class Reindexer
         $y = 0;
         while ($x < $this->originalLengths[0] && $y < $this->originalLengths[1]) {
             $startX = $x;
-            while ($x < $this->originalLengths[0] && $y < $this->originalLengths[1] && $changes1->get($x) === false && $changes2->get($y) === false) {
+            while ($x < $this->originalLengths[0] && $y < $this->originalLengths[1] && $changes1->has($x) === false && $changes2->has($y) === false) {
                 ++$x;
                 ++$y;
             }
@@ -81,11 +81,11 @@ class Reindexer
             }
             $dx = 0;
             $dy = 0;
-            while ($x < $this->originalLengths[0] && $changes1->get($x)) {
+            while ($x < $this->originalLengths[0] && $changes1->has($x)) {
                 ++$dx;
                 ++$x;
             }
-            while ($y < $this->originalLengths[1] && $changes2->get($y)) {
+            while ($y < $this->originalLengths[1] && $changes2->has($y)) {
                 ++$dy;
                 ++$y;
             }

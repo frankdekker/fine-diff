@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace FDekker\Util;
 
-class BitSet
+use Stringable;
+
+class BitSet implements Stringable
 {
     /* set consts based on 32 or 64 bit architecture */
     private const ADDRESS_BITS_PER_WORD = PHP_INT_SIZE === 4 ? 5 : 6;
@@ -43,7 +45,7 @@ class BitSet
         }
     }
 
-    public function get(int $bitIndex): bool
+    public function has(int $bitIndex): bool
     {
         $wordIdx = $bitIndex >> self::ADDRESS_BITS_PER_WORD;
         $bitIdx  = $bitIndex & self::WORD_MASK;

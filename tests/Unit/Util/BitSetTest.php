@@ -16,10 +16,10 @@ class BitSetTest extends TestCase
         $bitSet = new BitSet();
         $bitSet->set(64, 126);
 
-        static::assertFalse($bitSet->get(63));
-        static::assertTrue($bitSet->get(64));
-        static::assertTrue($bitSet->get(125));
-        static::assertFalse($bitSet->get(126));
+        static::assertFalse($bitSet->has(63));
+        static::assertTrue($bitSet->has(64));
+        static::assertTrue($bitSet->has(125));
+        static::assertFalse($bitSet->has(126));
     }
 
     public function testOutsideWordBoundary(): void
@@ -27,11 +27,11 @@ class BitSetTest extends TestCase
         $bitSet = new BitSet();
         $bitSet->set(2, 129);
 
-        static::assertFalse($bitSet->get(1));
-        static::assertTrue($bitSet->get(2));
-        static::assertTrue($bitSet->get(64));
-        static::assertTrue($bitSet->get(128));
-        static::assertFalse($bitSet->get(129));
+        static::assertFalse($bitSet->has(1));
+        static::assertTrue($bitSet->has(2));
+        static::assertTrue($bitSet->has(64));
+        static::assertTrue($bitSet->has(128));
+        static::assertFalse($bitSet->has(129));
     }
 
     public function testGetSetWithSingleArgumentOnEndingBoundary(): void
@@ -39,9 +39,9 @@ class BitSetTest extends TestCase
         $bitSet = new BitSet();
         $bitSet->set(63);
 
-        static::assertFalse($bitSet->get(62));
-        static::assertTrue($bitSet->get(63));
-        static::assertFalse($bitSet->get(64));
+        static::assertFalse($bitSet->has(62));
+        static::assertTrue($bitSet->has(63));
+        static::assertFalse($bitSet->has(64));
     }
 
     public function testGetSetWithSingleArgumentOnStartingBoundary(): void
@@ -49,18 +49,18 @@ class BitSetTest extends TestCase
         $bitSet = new BitSet();
         $bitSet->set(64);
 
-        static::assertFalse($bitSet->get(63));
-        static::assertTrue($bitSet->get(64));
-        static::assertFalse($bitSet->get(65));
+        static::assertFalse($bitSet->has(63));
+        static::assertTrue($bitSet->has(64));
+        static::assertFalse($bitSet->has(65));
     }
 
     public function testGetSetShouldSkipOnZeroRange(): void
     {
         $bitSet = new BitSet();
         $bitSet->set(5, 5);
-        static::assertFalse($bitSet->get(4));
-        static::assertFalse($bitSet->get(5));
-        static::assertFalse($bitSet->get(6));
+        static::assertFalse($bitSet->has(4));
+        static::assertFalse($bitSet->has(5));
+        static::assertFalse($bitSet->has(6));
     }
 
     public function testGetSetShouldDisallowNegativeStartIndex(): void
@@ -84,13 +84,13 @@ class BitSetTest extends TestCase
         $bitSet = new BitSet();
         $bitSet->set(63, 65);
 
-        static::assertFalse($bitSet->get(62));
-        static::assertTrue($bitSet->get(63));
-        static::assertTrue($bitSet->get(64));
+        static::assertFalse($bitSet->has(62));
+        static::assertTrue($bitSet->has(63));
+        static::assertTrue($bitSet->has(64));
 
         $bitSet->clear(63);
-        static::assertFalse($bitSet->get(62));
-        static::assertFalse($bitSet->get(63));
-        static::assertTrue($bitSet->get(64));
+        static::assertFalse($bitSet->has(62));
+        static::assertFalse($bitSet->has(63));
+        static::assertTrue($bitSet->has(64));
     }
 }
