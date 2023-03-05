@@ -5,12 +5,12 @@ namespace FDekker\Entity;
 
 use InvalidArgumentException;
 
-class Side: int
+class Side
 {
     private const LEFT  = 0;
     private const RIGHT = 1;
 
-    public function __construct(private readonly int $index)
+    private function __construct(private readonly int $index)
     {
     }
 

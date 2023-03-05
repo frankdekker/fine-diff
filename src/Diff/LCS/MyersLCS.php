@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace FDekker\Diff\LCS;
 
+use FDekker\Diff\DiffConfig;
 use FDekker\Diff\FilesTooBigForDiffException;
 use FDekker\Util\BitSet;
 use RuntimeException;
-use function FDekker\Diff\count;
 
 /**
  * Algorithm for finding the longest common subsequence of two strings

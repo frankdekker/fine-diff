@@ -7,7 +7,7 @@ use FDekker\Entity\Change;
 
 class DiffChangeDiffIterable extends AbstractChangeDiffIterable
 {
-    public function __construct(private readonly Change $change, int $length1, int $length2)
+    public function __construct(private readonly ?Change $change, int $length1, int $length2)
     {
         parent::__construct($length1, $length2);
     }

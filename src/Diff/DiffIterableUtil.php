@@ -9,24 +9,28 @@ use FDekker\Diff\Iterable\DiffIterableInterface;
 use FDekker\Diff\Iterable\FairDiffIterableInterface;
 use FDekker\Diff\Iterable\FairDiffIterableWrapper;
 use FDekker\Entity\Change;
+use FDekker\Entity\EquatableInterface;
 
 class DiffIterableUtil
 {
     /**
+     * @param EquatableInterface[] $objects1
+     * @param EquatableInterface[] $objects2
+     *
      * @throws DiffToBigException
      */
-    public static function diff(array $chunks1, array $chunks2): object
+    public static function diff(array $objects1, array $objects2): object
     {
         try {
-            $change = (new Diff())->buildChanges($chunks1, $chunks2);
+            $change = (new Diff())->buildChanges($objects1, $objects2);
 
-            return self::fair(self::create($change, count($chunks1), count($chunks2)));
+            return self::fair(self::create($change, count($objects1), count($objects2)));
         } catch (FilesTooBigForDiffException $e) {
             throw new DiffToBigException(previous: $e);
         }
     }
 
-    public static function create(Change $change, int $length1, int $length2): DiffIterableInterface
+    public static function create(?Change $change, int $length1, int $length2): DiffIterableInterface
     {
         return new DiffChangeDiffIterable($change, $length1, $length2);
     }
