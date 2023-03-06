@@ -42,7 +42,6 @@ class WordChunkOptimizer extends AbstractChunkOptimizer
 
         // shift chunks left [X]A Y[A ZA] -> [XA] YA [ZA]
         //                   [X][A ZA] -> [XA] [ZA]
-        //  int leftShift = findSequenceEdgeShift(touchText, touchWords, touchStart, equalForward, true);
         $leftShift = self::findSequenceEdgeShift($touchText, $touchWords, $touchStart, $equalForward, true);
         if ($leftShift > 0) {
             return $leftShift;
