@@ -22,7 +22,7 @@ class DiffIterableUtil
      *
      * @throws DiffToBigException
      */
-    public static function diff(array $objects1, array $objects2): object
+    public static function diff(array $objects1, array $objects2): FairDiffIterableInterface
     {
         try {
             $change = (new Diff())->buildChanges($objects1, $objects2);
