@@ -7,6 +7,7 @@ use IteratorAggregate;
 
 /**
  * @template T
+ * @extends IteratorAggregate<T>
  */
 interface CursorIteratorInterface extends IteratorAggregate
 {
