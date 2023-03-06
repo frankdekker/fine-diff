@@ -10,6 +10,7 @@ use FDekker\Diff\Iterable\FairDiffIterableInterface;
 use FDekker\Diff\Iterable\FairDiffIterableWrapper;
 use FDekker\Diff\Iterable\InvertedDiffIterableWrapper;
 use FDekker\Diff\Iterable\RangesDiffIterable;
+use FDekker\Diff\Iterable\SubiterableDiffIterable;
 use FDekker\Entity\Change;
 use FDekker\Entity\EquatableInterface;
 use FDekker\Entity\Range;
