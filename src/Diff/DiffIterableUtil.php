@@ -10,9 +10,10 @@ use FDekker\Diff\Iterable\FairDiffIterableInterface;
 use FDekker\Diff\Iterable\FairDiffIterableWrapper;
 use FDekker\Diff\Iterable\InvertedDiffIterableWrapper;
 use FDekker\Diff\Iterable\RangesDiffIterable;
-use FDekker\Diff\Iterable\SubiterableDiffIterable;
+use FDekker\Diff\Matcher\AdjustmentPunctuationMatcher;
 use FDekker\Entity\Change;
 use FDekker\Entity\EquatableInterface;
+use FDekker\Entity\InlineChunk;
 use FDekker\Entity\Range;
 
 class DiffIterableUtil
@@ -54,5 +55,21 @@ class DiffIterableUtil
         }
 
         return new FairDiffIterableWrapper($iterable);
+    }
+
+    /**
+     * @param InlineChunk[] $words1
+     * @param InlineChunk[] $words2
+     */
+    public static function matchAdjustmentDelimiters(
+        string $text1,
+        string $text2,
+        array $words1,
+        array $words2,
+        FairDiffIterableInterface $changes,
+        int $startShift1,
+        int $startShift2
+    ): FairDiffIterableInterface {
+        return (new AdjustmentPunctuationMatcher($text1, $text2, $words1, $words2, $startShift1, $startShift2, $changes))->build();
     }
 }

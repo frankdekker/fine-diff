@@ -30,4 +30,7 @@ class AdjustmentPunctuationMatcher
         $this->builder = new ChangeBuilder($this->len1, $this->len2);
     }
 
+    public function build(): FairDiffIterableInterface {
+        // TODO continue here
+    }
 }
