@@ -28,6 +28,14 @@ class CharSequence implements CharSequenceInterface
         return $this->chars[$index];
     }
 
+    /**
+     * @return string[]
+     */
+    public function chars(): array
+    {
+        return $this->chars;
+    }
+
     public function isEmpty(): bool
     {
         return count($this->chars) === 0;

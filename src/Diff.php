@@ -56,7 +56,7 @@ class Diff
             return $builder->getFirstChange();
         }
 
-        if (DiffConfig::USE_PATIENCE_ALG) {
+        if (DiffConfig::USE_PATIENCE_ALG) { // @phpstan-ignore-line
             $patienceIntLCS = new PatienceIntLCS($discarded[0], $discarded[1]);
             $patienceIntLCS->execute();
             $changes = $patienceIntLCS->getChanges();

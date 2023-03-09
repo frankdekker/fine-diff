@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace FDekker\ChunkOptimizer;
 
 use FDekker\Diff\Iterable\FairDiffIterableInterface;
+use FDekker\Entity\Character\CharSequenceInterface;
 use FDekker\Entity\InlineChunk;
 use FDekker\Entity\NewLineChunk;
 use FDekker\Entity\Range;
@@ -22,8 +23,8 @@ class WordChunkOptimizer extends AbstractChunkOptimizer
     public function __construct(
         array $words1,
         array $words2,
-        private readonly string $text1,
-        private readonly string $text2,
+        private readonly CharSequenceInterface $text1,
+        private readonly CharSequenceInterface $text2,
         FairDiffIterableInterface $changes
     ) {
         parent::__construct($words1, $words2, $changes);
@@ -61,7 +62,7 @@ class WordChunkOptimizer extends AbstractChunkOptimizer
     /**
      * @param InlineChunk[] $words
      */
-    private static function findSequenceEdgeShift(string $text, array $words, int $offset, int $count, bool $leftToRight): int
+    private static function findSequenceEdgeShift(CharSequenceInterface $text, array $words, int $offset, int $count, bool $leftToRight): int
     {
         for ($i = 0; $i < $count; $i++) {
             if ($leftToRight) {
@@ -80,7 +81,7 @@ class WordChunkOptimizer extends AbstractChunkOptimizer
         return -1;
     }
 
-    private static function isSeparatedWithWhitespace(string $text, InlineChunk $word1, InlineChunk $word2): bool
+    private static function isSeparatedWithWhitespace(CharSequenceInterface $text, InlineChunk $word1, InlineChunk $word2): bool
     {
         if ($word1 instanceof NewLineChunk || $word2 instanceof NewLineChunk) {
             return true;
@@ -89,11 +90,10 @@ class WordChunkOptimizer extends AbstractChunkOptimizer
         $offset1 = $word1->getOffset2();
         $offset2 = $word2->getOffset1();
 
-        // TODO check for performance improvement. See if mb_substr + preg_match is faster. Or store character sequence inside InlineChunk
         for ($i = $offset1; $i < $offset2; $i++) {
-            if (Character::isWhiteSpace(mb_substr($text, $i, $i))) {
+            if (Character::isWhiteSpace($text->charAt($i))) {
                 return true;
-            };
+            }
         }
 
         return false;

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace FDekker\Entity\Character;
 
+use FDekker\Entity\EquatableInterface;
+
 class MergingCharSequence implements CharSequenceInterface
 {
     public function __construct(private readonly CharSequenceInterface $s1, private readonly CharSequenceInterface $s2)
@@ -28,6 +30,14 @@ class MergingCharSequence implements CharSequenceInterface
         return $this->s2->charAt($index - $this->s1->length());
     }
 
+    /**
+     * @return string[]
+     */
+    public function chars(): array
+    {
+        return array_merge($this->s1->chars(), $this->s2->chars());
+    }
+
     public function subSequence(int $start, int $end): CharSequenceInterface
     {
         if ($start === 0 && $end === $this->length()) {
@@ -45,6 +55,11 @@ class MergingCharSequence implements CharSequenceInterface
         }
 
         return new MergingCharSequence($this->s1->subSequence($start, $firstLength), $this->s2->subSequence(0, $end - $firstLength));
+    }
+
+    public function equals(EquatableInterface $object): bool
+    {
+        return $object instanceof CharSequenceInterface && (string)$this === (string)$object;
     }
 
     public function __toString(): string

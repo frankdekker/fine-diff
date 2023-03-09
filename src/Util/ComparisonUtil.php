@@ -22,7 +22,7 @@ class ComparisonUtil
             ComparisonPolicy::TRIM_WHITESPACES   =>
                 mb_strtolower(trim($text1)) === mb_strtolower(trim($text2)),
             ComparisonPolicy::IGNORE_WHITESPACES =>
-                mb_strtolower(preg_replace('/\s+/', '', $text1)) === mb_strtolower(preg_replace('/\s+/', '', $text2)),
+                mb_strtolower((string)preg_replace('/\s+/', '', $text1)) === mb_strtolower((string)preg_replace('/\s+/', '', $text2)),
         };
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace FDekker;
 
 use FDekker\Diff\FilesTooBigForDiffException;
+use FDekker\Entity\Character\CharSequenceInterface;
 use FDekker\Entity\InlineChunk;
 use FDekker\Entity\NewLineChunk;
 use FDekker\Entity\WordChunk;
@@ -18,11 +19,11 @@ class ByWord
     /**
      * @throws FilesTooBigForDiffException
      */
-    public function compareAndSplit(string $text1, string $text2, ComparisonPolicy $comparisonPolicy): void
+    public function compareAndSplit(CharSequenceInterface $text1, CharSequenceInterface $text2, ComparisonPolicy $comparisonPolicy): void
     {
         // TODO finish all calls
-        $inlineChunksA = ByWord::getInlineChunks($text1);
-        $inlineChunksB = ByWord::getInlineChunks($text2);
+        $inlineChunksA = self::getInlineChunks($text1);
+        $inlineChunksB = self::getInlineChunks($text2);
 
         $changes = (new Diff())->buildChanges($inlineChunksA, $inlineChunksB);
         // wordChanges = optimizeWordChunks(text1, text2, words1, words2, wordChanges, indicator);
@@ -32,16 +33,13 @@ class ByWord
     /**
      * @return InlineChunk[]
      */
-    public static function getInlineChunks(string $text): array
+    public static function getInlineChunks(CharSequenceInterface $text): array
     {
-        $charSequence = preg_split('//u', $text, -1, PREG_SPLIT_NO_EMPTY);
-        assert($charSequence !== false);
-
         $wordStart = -1;
         $wordHash  = 0;
         $chunks    = [];
 
-        foreach ($charSequence as $offset => $char) {
+        foreach ($text->chars() as $offset => $char) {
             $ch         = IntlChar::ord($char);
             $isAlpha    = Character::isAlpha($ch);
             $isWordPart = $isAlpha && Character::isContinuousScript($ch) === false;
@@ -67,7 +65,7 @@ class ByWord
         }
 
         if ($wordStart !== -1) {
-            $chunks[] = new WordChunk($text, $wordStart, count($charSequence), $wordHash);
+            $chunks[] = new WordChunk($text, $wordStart, $text->length(), $wordHash);
         }
 
         return $chunks;

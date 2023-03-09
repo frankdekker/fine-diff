@@ -12,6 +12,15 @@ class Couple extends Pair
     /**
      * @param T $first
      * @param T $second
+     */
+    public function __construct(mixed $first, mixed $second)
+    {
+        parent::__construct($first, $second);
+    }
+
+    /**
+     * @param T $first
+     * @param T $second
      *
      * @return Couple<T>
      */

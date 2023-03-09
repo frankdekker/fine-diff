@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FDekker\Entity;
 
+use FDekker\Util\Comparing;
 use Stringable;
 
 /**
@@ -22,7 +23,7 @@ class Pair implements EquatableInterface, Stringable
     /**
      * @return A
      */
-    public final function getFirst(): mixed
+    final public function getFirst(): mixed
     {
         return $this->first;
     }
@@ -30,7 +31,7 @@ class Pair implements EquatableInterface, Stringable
     /**
      * @return B
      */
-    public final function getSecond(): mixed
+    final public function getSecond(): mixed
     {
         return $this->second;
     }
@@ -40,6 +41,8 @@ class Pair implements EquatableInterface, Stringable
         if ($object instanceof self === false) {
             return false;
         }
+
+        return Comparing::equal($this->first, $object->first) && Comparing::equal($this->second, $object->second);
     }
 
     public function __toString(): string
@@ -57,7 +60,6 @@ class Pair implements EquatableInterface, Stringable
 
         return '<' . $first . ',' . $second . '>';
     }
-
 
     /**
      * @param A $first

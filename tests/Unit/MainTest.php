@@ -9,6 +9,7 @@ use FDekker\Diff\DiffIterableUtil;
 use FDekker\Diff\DiffToBigException;
 use FDekker\Diff\Iterable\SubiterableDiffIterable;
 use FDekker\Diff\LineFragmentSplitter;
+use FDekker\Entity\Character\CharSequence;
 use PHPUnit\Framework\TestCase;
 
 class MainTest extends TestCase
@@ -18,8 +19,8 @@ class MainTest extends TestCase
      */
     public function testMain(): void
     {
-        $text1 = "public function int bar";
-        $text2 = "public foo int test";
+        $text1 = CharSequence::fromString("public function int bar");
+        $text2 = CharSequence::fromString("public foo int test");
 
         $words1 = ByWord::getInlineChunks($text1);
         $words2 = ByWord::getInlineChunks($text2);

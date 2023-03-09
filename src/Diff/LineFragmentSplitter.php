@@ -57,7 +57,7 @@ class LineFragmentSplitter
                 }
             }
         }
-        self::addLineChunk(count($this->words1), count($this->words2), $hasEqualWords);
+        $this->addLineChunk(count($this->words1), count($this->words2), $hasEqualWords);
         if ($this->pendingChunk !== null) {
             $this->result[] = $this->pendingChunk->block;
         }
@@ -103,7 +103,7 @@ class LineFragmentSplitter
 
         $block = new WordBlock(new Range($start1, $end1, $start2, $end2), new Range($startOffset1, $endOffset1, $startOffset2, $endOffset2));
 
-        return new PendingChunk($block, $hasEqualWords, self::hasWordsInside($block), self::isEqualsIgnoreWhitespace($block));
+        return new PendingChunk($block, $hasEqualWords, $this->hasWordsInside($block), $this->isEqualsIgnoreWhitespace($block));
     }
 
     private static function shouldMergeChunks(PendingChunk $chunk1, PendingChunk $chunk2): bool
@@ -170,7 +170,7 @@ class LineFragmentSplitter
     /**
      * @param InlineChunk[] $words
      */
-    private static function getOffset(array $words, string $text, int $index)
+    private static function getOffset(array $words, string $text, int $index): int
     {
         if ($index === -1) {
             return 0;
