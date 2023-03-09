@@ -3,9 +3,10 @@ declare(strict_types=1);
 
 namespace FDekker\Entity\Character;
 
+use FDekker\Entity\EquatableInterface;
 use Stringable;
 
-interface CharSequenceInterface extends Stringable
+interface CharSequenceInterface extends Stringable, EquatableInterface
 {
     public function length(): int;
 

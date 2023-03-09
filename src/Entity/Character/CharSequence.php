@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace FDekker\Entity\Character;
 
-use function FDekker\Character\count;
+use FDekker\Entity\EquatableInterface;
+use function count;
+use function assert;
 
 class CharSequence implements CharSequenceInterface
 {
@@ -39,5 +41,22 @@ class CharSequence implements CharSequenceInterface
     public function __toString(): string
     {
         return implode('', $this->chars);
+    }
+
+    public static function fromString(string $string): self
+    {
+        $chars = preg_split('//u', $string, -1, PREG_SPLIT_NO_EMPTY);
+        assert($chars !== false);
+
+        return new CharSequence($chars);
+    }
+
+    public function equals(EquatableInterface $object): bool
+    {
+        if ($object instanceof self === false) {
+            return false;
+        }
+
+        return $object === $this || $this->chars === $object->chars;
     }
 }

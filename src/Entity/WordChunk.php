@@ -3,15 +3,17 @@ declare(strict_types=1);
 
 namespace FDekker\Entity;
 
+use FDekker\Entity\Character\CharSequenceInterface;
+
 class WordChunk implements InlineChunk
 {
-    public function __construct(private string $text, private int $offset1, private int $offset2, private int $hash)
+    public function __construct(private CharSequenceInterface $text, private int $offset1, private int $offset2, private int $hash)
     {
     }
 
     public function getContent(): string
     {
-        return mb_substr($this->text, $this->offset1, $this->offset2 - $this->offset1);
+        return (string)$this->text->subSequence($this->offset1, $this->offset2);
     }
 
     public function getOffset1(): int
@@ -34,7 +36,8 @@ class WordChunk implements InlineChunk
             return true;
         }
 
-        return $this->hash === $object->hash && $this->getContent() === $object->getContent();
+        return $this->hash === $object->hash &&
+            $this->text->subSequence($this->offset1, $this->offset2) === $object->text->subSequence($this->offset1, $this->offset2);
     }
 
     public function hashCode(): int
