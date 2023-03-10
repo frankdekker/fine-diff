@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace FDekker\Diff;
 
 use FDekker\Diff\Iterable\FairDiffIterableInterface;
+use FDekker\Entity\Character\CharSequenceInterface;
 use FDekker\Entity\InlineChunk;
 use FDekker\Entity\LineFragmentSplitter\PendingChunk;
 use FDekker\Entity\LineFragmentSplitter\WordBlock;
@@ -25,8 +26,8 @@ class LineFragmentSplitter
      * @param InlineChunk[] $words2
      */
     public function __construct(
-        private readonly string $text1,
-        private readonly string $text2,
+        private readonly CharSequenceInterface $text1,
+        private readonly CharSequenceInterface $text2,
         private readonly array $words1,
         private readonly array $words2,
         private readonly FairDiffIterableInterface $iterable
@@ -170,14 +171,14 @@ class LineFragmentSplitter
     /**
      * @param InlineChunk[] $words
      */
-    private static function getOffset(array $words, string $text, int $index): int
+    private static function getOffset(array $words, CharSequenceInterface $text, int $index): int
     {
         if ($index === -1) {
             return 0;
         }
         if ($index === count($words)) {
             // TODO check if this should be strlen or mb_strlen
-            return mb_strlen($text);
+            return $text->length();
         }
 
         $chunk = $words[$index];

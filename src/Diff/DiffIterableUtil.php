@@ -12,6 +12,7 @@ use FDekker\Diff\Iterable\InvertedDiffIterableWrapper;
 use FDekker\Diff\Iterable\RangesDiffIterable;
 use FDekker\Diff\Matcher\AdjustmentPunctuationMatcher;
 use FDekker\Entity\Change;
+use FDekker\Entity\Character\CharSequenceInterface;
 use FDekker\Entity\EquatableInterface;
 use FDekker\Entity\InlineChunk;
 use FDekker\Entity\Range;
@@ -19,8 +20,8 @@ use FDekker\Entity\Range;
 class DiffIterableUtil
 {
     /**
-     * @param EquatableInterface[] $objects1
-     * @param EquatableInterface[] $objects2
+     * @param int[]|EquatableInterface[] $objects1
+     * @param int[]|EquatableInterface[] $objects2
      *
      * @throws DiffToBigException
      */
@@ -60,10 +61,12 @@ class DiffIterableUtil
     /**
      * @param InlineChunk[] $words1
      * @param InlineChunk[] $words2
+     *
+     * @throws DiffToBigException
      */
     public static function matchAdjustmentDelimiters(
-        string $text1,
-        string $text2,
+        CharSequenceInterface $text1,
+        CharSequenceInterface $text2,
         array $words1,
         array $words2,
         FairDiffIterableInterface $changes,

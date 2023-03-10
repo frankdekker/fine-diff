@@ -3,11 +3,12 @@ declare(strict_types=1);
 
 namespace FDekker\Diff\Matcher;
 
+use FDekker\ByWordRt;
 use FDekker\Diff\DiffIterableUtil;
+use FDekker\Diff\DiffToBigException;
 use FDekker\Diff\Iterable\FairDiffIterableInterface;
 use FDekker\Entity\Character\CharSequenceInterface;
 use FDekker\Entity\InlineChunk;
-use FDekker\Entity\Couple;
 use FDekker\Entity\Range;
 use LogicException;
 
@@ -40,6 +41,9 @@ class AdjustmentPunctuationMatcher
         $this->builder = new ChangeBuilder($this->len1, $this->len2);
     }
 
+    /**
+     * @throws DiffToBigException
+     */
     public function build(): FairDiffIterableInterface
     {
         $this->execute();
@@ -47,6 +51,9 @@ class AdjustmentPunctuationMatcher
         return DiffIterableUtil::fair($this->builder->finish());
     }
 
+    /**
+     * @throws DiffToBigException
+     */
     private function execute(): void
     {
         $this->clearLastRange();
@@ -82,6 +89,9 @@ class AdjustmentPunctuationMatcher
         $this->lastEnd2   = -1;
     }
 
+    /**
+     * @throws DiffToBigException
+     */
     private function matchBackward(int $index1, int $index2): void
     {
         $start1 = $index1 === 0 ? 0 : $this->getEndOffset1($index1 - 1);
@@ -93,6 +103,9 @@ class AdjustmentPunctuationMatcher
         $this->clearLastRange();
     }
 
+    /**
+     * @throws DiffToBigException
+     */
     private function matchBackwardRange(int $start1, int $start2, int $end1, int $end2): void
     {
         assert($this->lastStart1 !== -1 && $this->lastStart2 !== -1 && $this->lastEnd1 !== -1 && $this->lastEnd2 !== -1);
@@ -157,6 +170,9 @@ class AdjustmentPunctuationMatcher
         }
     }
 
+    /**
+     * @throws DiffToBigException
+     */
     private function matchComplexRange(int $start11, int $start12, int $end11, int $end12, int $start21, int $start22, int $end21, int $end22): void
     {
         if ($start11 === $start21 && $end11 === $end21) {
@@ -168,15 +184,16 @@ class AdjustmentPunctuationMatcher
         }
     }
 
+    /**
+     * @throws DiffToBigException
+     */
     private function matchComplexRangeLeft(int $start1, int $end1, int $start12, int $end12, int $start22, int $end22): void
     {
         $sequence1  = $this->text1->subSequence($start1, $end1);
         $sequence21 = $this->text2->subSequence($start12, $end12);
         $sequence22 = $this->text2->subSequence($start22, $end22);
 
-        // TODO $changes = comparePunctuation2Side(sequence1, sequence21, sequence22);
-        /** @var Couple<FairDiffIterableInterface> $changes */
-        $changes = [];
+        $changes = ByWordRt::comparePunctuation2Side($sequence1, $sequence21, $sequence22);
 
         /** @var Range $ch */
         foreach ($changes->first->unchanged as $ch) {
@@ -188,15 +205,16 @@ class AdjustmentPunctuationMatcher
         }
     }
 
+    /**
+     * @throws DiffToBigException
+     */
     private function matchComplexRangeRight(int $start2, int $end2, int $start11, int $end11, int $start21, int $end21): void
     {
         $sequence11 = $this->text1->subSequence($start11, $end11);
         $sequence12 = $this->text1->subSequence($start21, $end21);
         $sequence2  = $this->text2->subSequence($start2, $end2);
 
-        // TODO $changes = comparePunctuation2Side(sequence2, sequence11, sequence12);
-        /** @var Couple<FairDiffIterableInterface> $changes */
-        $changes = [];
+        $changes = ByWordRt::comparePunctuation2Side($sequence2, $sequence11, $sequence12);
 
         // Mirrored ch.*1 and ch.*2 as we use "compare2Side" that works with 2 right side, while we have 2 left here
         /** @var Range $ch */

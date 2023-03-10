@@ -17,8 +17,8 @@ use FDekker\Util\Reindexer;
 class Diff
 {
     /**
-     * @param EquatableInterface[] $objects1
-     * @param EquatableInterface[] $objects2
+     * @param int[]|EquatableInterface[] $objects1
+     * @param int[]|EquatableInterface[] $objects2
      *
      * @throws FilesTooBigForDiffException
      */
@@ -42,6 +42,7 @@ class Diff
     /**
      * @param int[] $ints1
      * @param int[] $ints2
+     *
      * @throws FilesTooBigForDiffException
      */
     private function doBuildChanges(array $ints1, array $ints2, ChangeBuilder $builder): ?Change
@@ -78,8 +79,8 @@ class Diff
     }
 
     /**
-     * @param EquatableInterface[] $objects1
-     * @param EquatableInterface[] $objects2
+     * @param int[]|EquatableInterface[] $objects1
+     * @param int[]|EquatableInterface[] $objects2
      */
     private function getStartShift(array $objects1, array $objects2): int
     {
@@ -87,7 +88,14 @@ class Diff
         $index = 0;
 
         for ($i = 0; $i < $size; $i++) {
-            if ($objects1[$i]->equals($objects2[$i]) === false) {
+            $object1 = $objects1[$i];
+            $object2 = $objects2[$i];
+
+            if ($object1 instanceof EquatableInterface && $object2 instanceof EquatableInterface) {
+                if ($object1->equals($object2) === false) {
+                    break;
+                }
+            } elseif ($object1 !== $object2) {
                 break;
             }
             ++$index;
@@ -97,8 +105,8 @@ class Diff
     }
 
     /**
-     * @param EquatableInterface[] $objects1
-     * @param EquatableInterface[] $objects2
+     * @param int[]|EquatableInterface[] $objects1
+     * @param int[]|EquatableInterface[] $objects2
      */
     private function getEndCut(array $objects1, array $objects2, int $startShift): int
     {
@@ -108,7 +116,14 @@ class Diff
         $index   = 0;
 
         for ($i = 0; $i < $size; $i++) {
-            if ($objects1[$length1 - $i - 1]->equals($objects2[$length2 - $i - 1]) === false) {
+            $object1 = $objects1[$length1 - $i - 1];
+            $object2 = $objects2[$length2 - $i - 1];
+
+            if ($object1 instanceof EquatableInterface && $object2 instanceof EquatableInterface) {
+                if ($object1->equals($object2) === false) {
+                    break;
+                }
+            } elseif ($object1 !== $object2) {
                 break;
             }
             ++$index;

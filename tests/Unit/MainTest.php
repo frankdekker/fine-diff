@@ -35,14 +35,24 @@ class MainTest extends TestCase
             $offsets = $block->offsets;
             $words   = $block->words;
 
-            $subText1 = mb_substr($text1, $offsets->start1, $offsets->end1);
-            $subText2 = mb_substr($text1, $offsets->start2, $offsets->end2);
+            $subText1 = $text1->subSequence($offsets->start1, $offsets->end1);
+            $subText2 = $text2->subSequence($offsets->start2, $offsets->end2);
 
             $subWords1 = array_slice($words1, $words->start1, $words->end1 - $words->start1);
-            $subWords1 = array_slice($words2, $words->start2, $words->end2 - $words->start2);
+            $subWords2 = array_slice($words2, $words->start2, $words->end2 - $words->start2);
 
             $subiterable = DiffIterableUtil::fair(
                 new SubiterableDiffIterable($wordChanges, $words->start1, $words->end1, $words->start2, $words->end2)
+            );
+
+            $delimitersIterable = DiffIterableUtil::matchAdjustmentDelimiters(
+                $subText1,
+                $subText2,
+                $subWords1,
+                $subWords2,
+                $subiterable,
+                $offsets->start1,
+                $offsets->start2
             );
         }
 
