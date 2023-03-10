@@ -27,7 +27,6 @@ class ByWord
 
         $changes = (new Diff())->buildChanges($inlineChunksA, $inlineChunksB);
         // wordChanges = optimizeWordChunks(text1, text2, words1, words2, wordChanges, indicator);
-
     }
 
     /**

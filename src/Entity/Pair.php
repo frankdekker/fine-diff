@@ -82,5 +82,4 @@ class Pair implements EquatableInterface, Stringable
 
         return $pair;
     }
-
 }

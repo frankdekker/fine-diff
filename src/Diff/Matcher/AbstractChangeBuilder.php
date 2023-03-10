@@ -73,5 +73,5 @@ abstract class AbstractChangeBuilder
         }
     }
 
-    protected abstract function addChange(int $start1, int $start2, int $end1, int $end2): void;
+    abstract protected function addChange(int $start1, int $start2, int $end1, int $end2): void;
 }

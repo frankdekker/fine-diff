@@ -35,5 +35,5 @@ abstract class AbstractChangeDiffIterable implements DiffIterableInterface
         return new UnchangedIterator($this->createChangeIterable(), $this->length1, $this->length2);
     }
 
-    protected abstract function createChangeIterable(): ChangeIterableInterface;
+    abstract protected function createChangeIterable(): ChangeIterableInterface;
 }

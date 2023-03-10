@@ -146,8 +146,8 @@ class LineFragmentSplitter
 
     private function isEqualsIgnoreWhitespace(WordBlock $block): bool
     {
-        $sequence1 = mb_substr($this->text1, $block->offsets->start1, $block->offsets->end1);
-        $sequence2 = mb_substr($this->text2, $block->offsets->start2, $block->offsets->end2);
+        $sequence1 = $this->text1->subSequence($block->offsets->start1, $block->offsets->end1);
+        $sequence2 = $this->text2->subSequence($block->offsets->start2, $block->offsets->end2);
 
         return ComparisonUtil::isEquals($sequence1, $sequence2, ComparisonPolicy::IGNORE_WHITESPACES);
     }

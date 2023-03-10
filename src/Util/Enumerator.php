@@ -7,13 +7,13 @@ use FDekker\Entity\EquatableInterface;
 
 class Enumerator
 {
-    /** @var array<int, EquatableInterface> */
+    /** @var array<int, int|EquatableInterface> */
     private array $numbers = [];
 
     private int $nextNumber = 1;
 
     /**
-     * @param EquatableInterface[] $objects
+     * @param int[]|EquatableInterface[] $objects
      *
      * @return int[]
      */
@@ -29,7 +29,7 @@ class Enumerator
         return $idx;
     }
 
-    private function enumerateObject(EquatableInterface $object): int
+    private function enumerateObject(int|EquatableInterface $object): int
     {
         $number = $this->getInt($object);
         if ($number === 0) {
@@ -40,10 +40,14 @@ class Enumerator
         return $number;
     }
 
-    private function getInt(EquatableInterface $object): int
+    private function getInt(int|EquatableInterface $object): int
     {
         foreach ($this->numbers as $number => $entry) {
-            if ($entry->equals($object)) {
+            if ($entry instanceof EquatableInterface && $object instanceof EquatableInterface) {
+                if ($entry->equals($object)) {
+                    return $number;
+                }
+            } elseif ($entry === $object) {
                 return $number;
             }
         }

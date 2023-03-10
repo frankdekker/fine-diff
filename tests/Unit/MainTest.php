@@ -58,5 +58,4 @@ class MainTest extends TestCase
 
         $test = true;
     }
-
 }

@@ -29,7 +29,10 @@ class ByWordRt
         $iterable1 = DiffIterableUtil::fair(DiffIterableUtil::createUnchanged($ranges->first, $text1->length(), $text21->length()));
         $iterable2 = DiffIterableUtil::fair(DiffIterableUtil::createUnchanged($ranges->second, $text1->length(), $text22->length()));
 
-        return Couple::of($iterable1, $iterable2);
+        /** @var Couple<FairDiffIterableInterface> $couple */
+        $couple = Couple::of($iterable1, $iterable2);
+
+        return $couple;
     }
 
     /**
@@ -53,6 +56,9 @@ class ByWordRt
             }
         }
 
-        return Couple::of($ranges1, $ranges2);
+        /** @var Couple<Range[]> $couple */
+        $couple = Couple::of($ranges1, $ranges2);
+
+        return $couple;
     }
 }

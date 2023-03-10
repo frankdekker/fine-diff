@@ -19,7 +19,7 @@ class AbstractChangeDiffIterableTest extends TestCase
     {
         parent::setUp();
         $this->changeIterable = $this->createMock(ChangeIterableInterface::class);
-        $this->iterable       = new class($this->changeIterable, 10, 20) extends AbstractChangeDiffIterable {
+        $this->iterable       = new class ($this->changeIterable, 10, 20) extends AbstractChangeDiffIterable {
             public function __construct(private readonly ChangeIterableInterface $iterable, int $length1, int $length2)
             {
                 parent::__construct($length1, $length2);
@@ -38,16 +38,16 @@ class AbstractChangeDiffIterableTest extends TestCase
         static::assertSame(20, $this->iterable->getLength2());
     }
 
-    public function testChanges(): void {
-
+    public function testChanges(): void
+    {
         $this->changeIterable->expects(self::once())->method('valid')->willReturn(false);
 
         $changeIterator = $this->iterable->changes();
         static::assertFalse($changeIterator->hasNext());
     }
 
-    public function testUnchanged(): void {
-
+    public function testUnchanged(): void
+    {
         $this->changeIterable->expects(self::exactly(2))->method('valid')->willReturn(false);
 
         $changeIterator = $this->iterable->unchanged();
