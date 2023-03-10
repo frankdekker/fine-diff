@@ -44,6 +44,14 @@ class DiffIterableUtil
     /**
      * @param Range[] $ranges
      */
+    public static function createFromRanges(array $ranges, int $length1, int $length2): DiffIterableInterface
+    {
+        return new RangesDiffIterable($ranges, $length1, $length2);
+    }
+
+    /**
+     * @param Range[] $ranges
+     */
     public static function createUnchanged(array $ranges, int $length1, int $length2): DiffIterableInterface
     {
         return new InvertedDiffIterableWrapper(new RangesDiffIterable($ranges, $length1, $length2));

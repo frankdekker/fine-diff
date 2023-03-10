@@ -3,13 +3,18 @@ declare(strict_types=1);
 
 namespace FDekker;
 
+use FDekker\Comparison\DefaultCorrector;
+use FDekker\Comparison\TrimSpacesCorrector;
 use FDekker\Diff\DiffIterableUtil;
 use FDekker\Diff\DiffToBigException;
+use FDekker\Diff\Iterable\DiffIterableInterface;
 use FDekker\Diff\Iterable\FairDiffIterableInterface;
 use FDekker\Entity\Character\CharSequenceInterface as CharSequence;
 use FDekker\Entity\Character\MergingCharSequence;
 use FDekker\Entity\Couple;
 use FDekker\Entity\Range;
+use FDekker\Enum\ComparisonPolicy;
+use InvalidArgumentException;
 
 class ByWordRt
 {
@@ -33,6 +38,23 @@ class ByWordRt
         $couple = Couple::of($iterable1, $iterable2);
 
         return $couple;
+    }
+
+    public static function matchAdjustmentWhitespaces(
+        CharSequence $text1,
+        CharSequence $text2,
+        FairDiffIterableInterface $iterable,
+        ComparisonPolicy $policy
+    ): DiffIterableInterface {
+        switch ($policy) {
+            case ComparisonPolicy::DEFAULT:
+                return (new DefaultCorrector($iterable, $text1, $text2))->build();
+            case ComparisonPolicy::TRIM_WHITESPACES:
+                return (new TrimSpacesCorrector((new DefaultCorrector($iterable, $text1, $text2))->build(), $text1, $text2))->build();
+            case ComparisonPolicy::IGNORE_WHITESPACES:
+            default:
+                throw new InvalidArgumentException('invalid policy');
+        }
     }
 
     /**

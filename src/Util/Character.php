@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace FDekker\Util;
 
+use FDekker\Entity\Character\CharSequenceInterface;
 use IntlChar;
+use function count;
+use function dirname;
 
 class Character
 {
@@ -37,6 +40,7 @@ class Character
             return false;
         }
 
+        // todo replace with lookup table
         return ($codePoint >= 33 && $codePoint <= 47) || // !"#$%&'()*+,-./
             ($codePoint >= 58 && $codePoint <= 64) ||    // :;<=>?@
             ($codePoint >= 91 && $codePoint <= 96) ||    // [\]^_`
@@ -50,6 +54,56 @@ class Character
 
     public static function isWhiteSpace(string $char): bool
     {
+        // todo optmize function call. Replace with lookup table?
         return $char === "\n" || $char === "\t" || $char === " ";
+    }
+
+    public static function isLeadingTrailingSpace(CharSequenceInterface $text, int $start): bool
+    {
+        return self::isLeadingSpace($text, $start) || self::isTrailingSpace($text, $start);
+    }
+
+    public static function isLeadingSpace(CharSequenceInterface $text, int $start): bool
+    {
+        $chars = $text->chars();
+        if ($start < 0 || $start === count($chars) || self::isWhiteSpace($chars[$start]) === false) {
+            return false;
+        }
+
+        --$start;
+        while ($start >= 0) {
+            $char = $chars[$start];
+            if ($char === "\n") {
+                return true;
+            }
+            if (self::isWhiteSpace($char) === false) {
+                return false;
+            }
+            --$start;
+        }
+
+        return true;
+    }
+
+    public static function isTrailingSpace(CharSequenceInterface $text, int $end): bool
+    {
+        $chars = $text->chars();
+        $len   = count($chars);
+        if ($end < 0 || $end === $len || self::isWhiteSpace($chars[$end])) {
+            return false;
+        }
+
+        while ($end < $len) {
+            $char = $chars[$end];
+            if ($char === "\n") {
+                return true;
+            }
+            if (self::isWhiteSpace($char) === false) {
+                return false;
+            }
+            ++$end;
+        }
+
+        return true;
     }
 }
