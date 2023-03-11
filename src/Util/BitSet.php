@@ -25,7 +25,7 @@ class BitSet implements Stringable
      */
     public function set(int $fromIndex, ?int $toIndex = null): void
     {
-        foreach (self::getWords($fromIndex, $toIndex) as $wordIdx => $value) {
+        foreach ($this->getWords($fromIndex, $toIndex) as $wordIdx => $value) {
             $this->words[$wordIdx] ??= 0;
             $this->words[$wordIdx] |= $value;
         }
@@ -33,7 +33,7 @@ class BitSet implements Stringable
 
     public function clear(int $fromIndex, ?int $toIndex = null): void
     {
-        foreach (self::getWords($fromIndex, $toIndex) as $wordIdx => $value) {
+        foreach ($this->getWords($fromIndex, $toIndex) as $wordIdx => $value) {
             if (isset($this->words[$wordIdx]) === false) {
                 continue;
             }

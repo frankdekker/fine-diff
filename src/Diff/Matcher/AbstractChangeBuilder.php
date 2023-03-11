@@ -23,7 +23,7 @@ abstract class AbstractChangeBuilder
     }
 
     /**
-     * @todo check if this function call be skipped as it seems to be used as variable acecssor only
+     * @todo check if this function call be skipped as it seems to be used as variable accessor only
      */
     public function getLength1(): int
     {
@@ -31,7 +31,7 @@ abstract class AbstractChangeBuilder
     }
 
     /**
-     * @todo check if this function call be skipped as it seems to be used as variable acecssor only
+     * @todo check if this function call be skipped as it seems to be used as variable accessor only
      */
     public function getLength2(): int
     {

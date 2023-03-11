@@ -48,7 +48,7 @@ abstract class AbstractChunkOptimizer
         $range1 = $this->ranges[count($this->ranges) - 2];
         $range2 = $this->ranges[count($this->ranges) - 1];
         if ($range1->end1 !== $range2->start1 && $range1->end2 !== $range2->start2) {
-            // if changes do not touch and we still can perform one of these optimisations,
+            // if changes do not touch, and we still can perform one of these optimisations,
             // it means that given DiffIterable is not LCS (because we can build a smaller one). This should not happen.
             return;
         }

@@ -18,7 +18,7 @@ class UnchangedIterator implements CursorIteratorInterface
     {
         if ($this->iterable->valid() && $this->iterable->getStart1() === 0 && $this->iterable->getStart2() === 0) {
             $this->lastIndex1 = $this->iterable->getEnd1();
-            $this->lastIndex1 = $this->iterable->getEnd2();
+            $this->lastIndex2 = $this->iterable->getEnd2();
             $this->iterable->next();
         }
     }

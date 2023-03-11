@@ -23,23 +23,20 @@ class ByWordRt
     /**
      * Compare one char sequence with two others (as if they were single sequence)
      * Return two DiffIterable: (0, len1) - (0, len21) and (0, len1) - (0, len22)
-     * @return Couple<FairDiffIterableInterface>
+     * @return array{0: FairDiffIterableInterface, 1: FairDiffIterableInterface}
      * @throws DiffToBigException
      */
-    public static function comparePunctuation2Side(CharSequence $text1, CharSequence $text21, CharSequence $text22): Couple
+    public static function comparePunctuation2Side(CharSequence $text1, CharSequence $text21, CharSequence $text22): array
     {
         $text2   = new MergingCharSequence($text21, $text22);
         $changes = ByCharRt::comparePunctuation($text1, $text2);
 
-        $ranges = self::splitIterable2Side($changes, $text21->length());
+        [$first, $second] = self::splitIterable2Side($changes, $text21->length());
 
-        $iterable1 = DiffIterableUtil::fair(DiffIterableUtil::createUnchanged($ranges->first, $text1->length(), $text21->length()));
-        $iterable2 = DiffIterableUtil::fair(DiffIterableUtil::createUnchanged($ranges->second, $text1->length(), $text22->length()));
+        $iterable1 = DiffIterableUtil::fair(DiffIterableUtil::createUnchanged($first, $text1->length(), $text21->length()));
+        $iterable2 = DiffIterableUtil::fair(DiffIterableUtil::createUnchanged($second, $text1->length(), $text22->length()));
 
-        /** @var Couple<FairDiffIterableInterface> $couple */
-        $couple = Couple::of($iterable1, $iterable2);
-
-        return $couple;
+        return [$iterable1, $iterable2];
     }
 
     public static function matchAdjustmentWhitespaces(
@@ -73,9 +70,9 @@ class ByWordRt
     }
 
     /**
-     * @return Couple<Range[]>
+     * @return array{0: Range[], 1: Range[]}
      */
-    private static function splitIterable2Side(FairDiffIterableInterface $changes, int $offset): Couple
+    private static function splitIterable2Side(FairDiffIterableInterface $changes, int $offset): array
     {
         $ranges1 = [];
         $ranges2 = [];
@@ -93,9 +90,6 @@ class ByWordRt
             }
         }
 
-        /** @var Couple<Range[]> $couple */
-        $couple = Couple::of($ranges1, $ranges2);
-
-        return $couple;
+        return [$ranges1, $ranges2];
     }
 }

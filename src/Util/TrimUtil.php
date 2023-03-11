@@ -226,19 +226,6 @@ class TrimUtil
 
     /**
      * @param callable(int): bool $ignored
-     *
-     * @return array{0: int, 1: int}
-     */
-    private static function trimCallback(int $start, int $end, callable $ignored): array
-    {
-        $start = self::trimStartCallback($start, $end, $ignored);
-        $end   = self::trimEndCallback($start, $end, $ignored);
-
-        return [$start, $end];
-    }
-
-    /**
-     * @param callable(int): bool $ignored
      */
     private static function trimStartCallback(int $start, int $end, callable $ignored): int
     {

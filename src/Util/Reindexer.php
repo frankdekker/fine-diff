@@ -28,7 +28,7 @@ class Reindexer
     }
 
     /**
-     * @param BitSet[] $discardedChanges
+     * @param array{0: BitSet, 1: BitSet} $discardedChanges
      */
     public function reindex(array $discardedChanges, LCSBuilderInterface $builder): void
     {

@@ -194,15 +194,10 @@ class AdjustmentPunctuationMatcher
         $sequence21 = $this->text2->subSequence($start12, $end12);
         $sequence22 = $this->text2->subSequence($start22, $end22);
 
-        $changes = ByWordRt::comparePunctuation2Side($sequence1, $sequence21, $sequence22);
-
-        /** @var FairDiffIterableInterface $first */
-        $first = $changes->first;
+        [$first, $second] = ByWordRt::comparePunctuation2Side($sequence1, $sequence21, $sequence22);
         foreach ($first->unchanged() as $ch) {
             $this->builder->markEqual($start1 + $ch->start1, $start12 + $ch->start2, $start1 + $ch->end1, $start12 + $ch->end2);
         }
-        /** @var FairDiffIterableInterface $second */
-        $second = $changes->second;
         foreach ($second->unchanged() as $ch) {
             $this->builder->markEqual($start1 + $ch->start1, $start22 + $ch->start2, $start1 + $ch->end1, $start22 + $ch->end2);
         }
@@ -217,16 +212,12 @@ class AdjustmentPunctuationMatcher
         $sequence12 = $this->text1->subSequence($start21, $end21);
         $sequence2  = $this->text2->subSequence($start2, $end2);
 
-        $changes = ByWordRt::comparePunctuation2Side($sequence2, $sequence11, $sequence12);
+        [$first, $second] = ByWordRt::comparePunctuation2Side($sequence2, $sequence11, $sequence12);
 
         // Mirrored ch.*1 and ch.*2 as we use "compare2Side" that works with 2 right side, while we have 2 left here
-        /** @var FairDiffIterableInterface $first */
-        $first = $changes->first;
         foreach ($first->unchanged() as $ch) {
             $this->builder->markEqual($start11 + $ch->start2, $start2 + $ch->start1, $start11 + $ch->end2, $start2 + $ch->end1);
         }
-        /** @var FairDiffIterableInterface $second */
-        $second = $changes->second;
         foreach ($second->unchanged() as $ch) {
             $this->builder->markEqual($start21 + $ch->start2, $start2 + $ch->start1, $start21 + $ch->end2, $start2 + $ch->end1);
         }
