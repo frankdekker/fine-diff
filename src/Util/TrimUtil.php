@@ -181,8 +181,8 @@ class TrimUtil
             if (($ignored1)($start1) === false) {
                 break;
             }
-            --$start1;
-            --$start2;
+            ++$start1;
+            ++$start2;
         }
 
         return $start1 - $oldStart1;
