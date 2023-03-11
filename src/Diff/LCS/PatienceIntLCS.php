@@ -98,7 +98,8 @@ class PatienceIntLCS
                 $this->executeAlgorithm($start1, $c1, $start2, $c2, $thresholdCheckCounter);
 
                 // TODO check if count returns correct length compare to java
-                for ($i = 1; $i < count($matching[0]); $i++) {
+                $matchingLen = count($matching[0]);
+                for ($i = 1; $i < $matchingLen; $i++) {
                     $s1 = ($matching[0][$i - 1] ?? 0) + 1;
                     $s2 = ($matching[1][$i - 1] ?? 0) + 1;
 
