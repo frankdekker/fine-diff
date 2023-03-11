@@ -10,8 +10,7 @@ use FDekker\Entity\LineFragmentSplitter\PendingChunk;
 use FDekker\Entity\LineFragmentSplitter\WordBlock;
 use FDekker\Entity\NewLineChunk;
 use FDekker\Entity\Range;
-use FDekker\Enum\ComparisonPolicy;
-use FDekker\Util\ComparisonUtil;
+use FDekker\Util\Strings;
 
 class LineFragmentSplitter
 {
@@ -146,10 +145,12 @@ class LineFragmentSplitter
 
     private function isEqualsIgnoreWhitespace(WordBlock $block): bool
     {
-        $sequence1 = $this->text1->subSequence($block->offsets->start1, $block->offsets->end1);
-        $sequence2 = $this->text2->subSequence($block->offsets->start2, $block->offsets->end2);
-
-        return ComparisonUtil::isEquals($sequence1, $sequence2, ComparisonPolicy::IGNORE_WHITESPACES);
+        return Strings::equalsIgnoreWhitespaces(
+            $this->text1,
+            $this->text2,
+            $block->offsets->start1, $block->offsets->end1,
+            $block->offsets->start2, $block->offsets->end2
+        );
     }
 
     private function hasWordsInside(WordBlock $block): bool

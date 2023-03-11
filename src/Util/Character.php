@@ -11,6 +11,7 @@ use function dirname;
 class Character
 {
     public const MIN_SUPPLEMENTARY_CODE_POINT = 0x010000;
+    public const IS_WHITESPACE                = ["\n" => true, "\t" => true, " " => true];
 
     public static function charCount(int $codePoint): int
     {
@@ -54,8 +55,8 @@ class Character
 
     public static function isWhiteSpace(string $char): bool
     {
-        // todo optmize function call. Replace with lookup table?
-        return $char === "\n" || $char === "\t" || $char === " ";
+        // todo optimize function call. Replace calls with const
+        return self::IS_WHITESPACE[$char] ?? false;
     }
 
     public static function isLeadingTrailingSpace(CharSequenceInterface $text, int $start): bool

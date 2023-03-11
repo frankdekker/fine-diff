@@ -7,9 +7,8 @@ use FDekker\Diff\DiffIterableUtil;
 use FDekker\Diff\Iterable\DiffIterableInterface;
 use FDekker\Entity\Character\CharSequenceInterface;
 use FDekker\Entity\Range;
-use FDekker\Enum\ComparisonPolicy;
 use FDekker\Util\Character;
-use FDekker\Util\ComparisonUtil;
+use FDekker\Util\Strings;
 use FDekker\Util\TrimUtil;
 
 class TrimSpacesCorrector
@@ -32,7 +31,7 @@ class TrimSpacesCorrector
             $end1   = $range->end1;
             $end2   = $range->end2;
 
-            // TODO optimize this. Is the leading/trailing space really necessary. seems unnecessary iterating over the string
+            // TODO optimize this. Is the leading/trailing space really necessary. seems unnecessary iterating twice over the string
             if (Character::isLeadingTrailingSpace($this->text1, $start1)) {
                 $start1 = TrimUtil::trimWhitespaceStart($this->text1, $start1, $end1);
             }
@@ -50,10 +49,7 @@ class TrimSpacesCorrector
             if ($trimmed->isEmpty()) {
                 continue;
             }
-
-            $sequence1 = $this->text1->subSequence($range->start1, $range->end1);
-            $sequence2 = $this->text2->subSequence($range->start2, $range->end2);
-            if (ComparisonUtil::isEquals($sequence1, $sequence2, ComparisonPolicy::DEFAULT)) {
+            if (Strings::equalsCaseSensitive($this->text1, $this->text2, $range->start1, $range->end1, $range->start2, $range->end2)) {
                 continue;
             }
 
