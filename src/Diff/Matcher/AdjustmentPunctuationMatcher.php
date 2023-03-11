@@ -136,8 +136,8 @@ class AdjustmentPunctuationMatcher
     {
         $start1 = $index1 === -1 ? 0 : $this->getEndOffset1($index1);
         $start2 = $index2 === -1 ? 0 : $this->getEndOffset2($index2);
-        $end1   = $index1 === count($this->words1) ? $this->len1 : $this->getStartOffset1($index1);
-        $end2   = $index2 === count($this->words2) ? $this->len2 : $this->getStartOffset2($index1);
+        $end1   = $index1 + 1 === count($this->words1) ? $this->len1 : $this->getStartOffset1($index1 + 1);
+        $end2   = $index2 + 1 === count($this->words2) ? $this->len2 : $this->getStartOffset2($index1 + 1);
 
         $this->matchForwardRange($start1, $start2, $end1, $end2);
     }
