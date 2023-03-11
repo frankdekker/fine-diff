@@ -12,7 +12,7 @@ class DiffFragment implements DiffFragmentInterface
         private readonly int $endOffset2
     ) {
         assert($startOffset1 !== $endOffset1 || $startOffset2 !== $endOffset2);
-        assert($startOffset1 <= $endOffset1 && $startOffset2 < $endOffset2);
+        assert($startOffset1 <= $endOffset1 && $startOffset2 <= $endOffset2);
     }
 
     public function getStartOffset1(): int
