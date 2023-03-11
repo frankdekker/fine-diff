@@ -19,6 +19,7 @@ class MainTest extends TestCase
         $text1 = CharSequence::fromString("public function int bar");
         $text2 = CharSequence::fromString("public foo int test");
 
-        ByWordRt::compareAndSplit($text1, $text2, ComparisonPolicy::DEFAULT);
+        $lineBlocks = ByWordRt::compareAndSplit($text1, $text2, ComparisonPolicy::DEFAULT);
+        $test = true;
     }
 }

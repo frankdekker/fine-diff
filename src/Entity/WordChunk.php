@@ -36,8 +36,14 @@ class WordChunk implements InlineChunk
             return true;
         }
 
-        return $this->hash === $object->hash &&
-            $this->text->subSequence($this->offset1, $this->offset2) === $object->text->subSequence($this->offset1, $this->offset2);
+        if ($this->hash !== $object->hash) {
+            return false;
+        }
+
+        $chars1 = array_slice($this->text->chars(), $this->offset1, $this->offset2 - $this->offset1);
+        $chars2 = array_slice($object->text->chars(), $object->offset1, $object->offset2 - $object->offset1);
+
+        return $chars1 === $chars2;
     }
 
     public function hashCode(): int
