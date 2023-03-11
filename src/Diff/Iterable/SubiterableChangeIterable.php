@@ -48,7 +48,7 @@ class SubiterableChangeIterable implements ChangeIterableInterface
             if ($newRange->isEmpty()) {
                 continue;
             }
-            $this->last = $range;
+            $this->last = $newRange;
             break;
         }
     }
