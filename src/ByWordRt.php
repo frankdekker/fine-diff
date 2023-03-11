@@ -3,23 +3,122 @@ declare(strict_types=1);
 
 namespace FDekker;
 
+use FDekker\ChunkOptimizer\WordChunkOptimizer;
 use FDekker\Comparison\DefaultCorrector;
 use FDekker\Comparison\TrimSpacesCorrector;
 use FDekker\Diff\DiffIterableUtil;
 use FDekker\Diff\DiffToBigException;
 use FDekker\Diff\Iterable\DiffIterableInterface;
 use FDekker\Diff\Iterable\FairDiffIterableInterface;
+use FDekker\Diff\Iterable\SubiterableDiffIterable;
+use FDekker\Diff\LineFragmentSplitter;
 use FDekker\Entity\Character\CharSequenceInterface as CharSequence;
 use FDekker\Entity\Character\MergingCharSequence;
-use FDekker\Entity\Couple;
+use FDekker\Entity\InlineChunk;
 use FDekker\Entity\LineFragmentSplitter\DiffFragment;
 use FDekker\Entity\LineFragmentSplitter\DiffFragmentInterface;
+use FDekker\Entity\LineFragmentSplitter\LineBlock;
+use FDekker\Entity\NewLineChunk;
 use FDekker\Entity\Range;
+use FDekker\Entity\WordChunk;
 use FDekker\Enum\ComparisonPolicy;
+use FDekker\Util\Character;
+use IntlChar;
 use InvalidArgumentException;
 
 class ByWordRt
 {
+    private const NEW_LINE = 10;
+
+    /**
+     * @return LineBlock[]
+     * @throws DiffToBigException
+     */
+    public static function compareAndSplit(CharSequence $text1, CharSequence $text2, ComparisonPolicy $policy): array
+    {
+        $words1 = self::getInlineChunks($text1);
+        $words2 = self::getInlineChunks($text2);
+
+        $wordChanges = DiffIterableUtil::diff($words1, $words2);
+        $wordChanges = (new WordChunkOptimizer($words1, $words2, $text1, $text2, $wordChanges))->build();
+
+        $wordBlocks = (new LineFragmentSplitter($text1, $text2, $words1, $words2, $wordChanges))->run();
+        $lineBlocks = [];
+
+        foreach ($wordBlocks as $block) {
+            $offsets = $block->offsets;
+            $words   = $block->words;
+
+            $subText1 = $text1->subSequence($offsets->start1, $offsets->end1);
+            $subText2 = $text2->subSequence($offsets->start2, $offsets->end2);
+
+            $subWords1 = array_slice($words1, $words->start1, $words->end1 - $words->start1);
+            $subWords2 = array_slice($words2, $words->start2, $words->end2 - $words->start2);
+
+            $subiterable = DiffIterableUtil::fair(
+                new SubiterableDiffIterable($wordChanges, $words->start1, $words->end1, $words->start2, $words->end2)
+            );
+
+            $delimitersIterable = DiffIterableUtil::matchAdjustmentDelimiters(
+                $subText1,
+                $subText2,
+                $subWords1,
+                $subWords2,
+                $subiterable,
+                $offsets->start1,
+                $offsets->start2
+            );
+
+            $iterable  = self::matchAdjustmentWhitespaces($subText1, $subText2, $delimitersIterable, $policy);
+            $fragments = self::convertIntoDiffFragments($iterable);
+
+            $lineBlocks[] = new LineBlock($fragments, $offsets, self::countNewlines($subWords1), self::countNewlines($subWords2));
+        }
+
+        return $lineBlocks;
+    }
+
+    /**
+     * @return InlineChunk[]
+     */
+    public static function getInlineChunks(CharSequence $text): array
+    {
+        $wordStart = -1;
+        $wordHash  = 0;
+        $chunks    = [];
+
+        foreach ($text->chars() as $offset => $char) {
+            $ch         = IntlChar::ord($char);
+            $isAlpha    = Character::isAlpha($ch);
+            $isWordPart = $isAlpha && Character::isContinuousScript($ch) === false;
+
+            if ($isWordPart) {
+                if ($wordStart === -1) {
+                    $wordStart = $offset;
+                    $wordHash  = 0;
+                }
+                $wordHash = $wordHash * 31 + $ch;
+            } else {
+                if ($wordStart !== -1) {
+                    $chunks[]  = new WordChunk($text, $wordStart, $offset, $wordHash);
+                    $wordStart = -1;
+                }
+
+                if ($isAlpha) { // continuous script
+                    $chunks[] = new WordChunk($text, $offset, $offset + 1, $ch);
+                } elseif ($ch === self::NEW_LINE) {
+                    $chunks[] = new NewlineChunk($offset);
+                }
+            }
+        }
+
+        if ($wordStart !== -1) {
+            $chunks[] = new WordChunk($text, $wordStart, $text->length(), $wordHash);
+        }
+
+        return $chunks;
+    }
+
     /**
      * Compare one char sequence with two others (as if they were single sequence)
      * Return two DiffIterable: (0, len1) - (0, len21) and (0, len1) - (0, len22)
@@ -67,6 +166,21 @@ class ByWordRt
         }
 
         return $fragments;
+    }
+
+    /**
+     * @param InlineChunk[] $words
+     */
+    public static function countNewlines(array $words): int
+    {
+        $count = 0;
+        foreach ($words as $word) {
+            if ($word instanceof NewLineChunk) {
+                ++$count;
+            }
+        }
+
+        return $count;
     }
 
     /**
