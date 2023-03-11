@@ -4,12 +4,14 @@ declare(strict_types=1);
 namespace FDekker\Tests;
 
 use FDekker\ByWord;
+use FDekker\ByWordRt;
 use FDekker\ChunkOptimizer\WordChunkOptimizer;
 use FDekker\Diff\DiffIterableUtil;
 use FDekker\Diff\DiffToBigException;
 use FDekker\Diff\Iterable\SubiterableDiffIterable;
 use FDekker\Diff\LineFragmentSplitter;
 use FDekker\Entity\Character\CharSequence;
+use FDekker\Enum\ComparisonPolicy;
 use PHPUnit\Framework\TestCase;
 
 class MainTest extends TestCase
@@ -19,6 +21,7 @@ class MainTest extends TestCase
      */
     public function testMain(): void
     {
+        $policy = ComparisonPolicy::DEFAULT;
         $text1 = CharSequence::fromString("public function int bar");
         $text2 = CharSequence::fromString("public foo int test");
 
@@ -54,6 +57,8 @@ class MainTest extends TestCase
                 $offsets->start1,
                 $offsets->start2
             );
+
+            $iterable = ByWordRt::matchAdjustmentWhitespaces($subText1, $subText2, $delimitersIterable, $policy);
         }
 
         $test = true;
