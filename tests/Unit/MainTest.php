@@ -22,8 +22,8 @@ class MainTest extends TestCase
     public function testMain(): void
     {
         $policy = ComparisonPolicy::DEFAULT;
-        $text1 = CharSequence::fromString("public function int bar");
-        $text2 = CharSequence::fromString("public foo int test");
+        $text1  = CharSequence::fromString("public function int bar");
+        $text2  = CharSequence::fromString("public foo int test");
 
         $words1 = ByWord::getInlineChunks($text1);
         $words2 = ByWord::getInlineChunks($text2);
@@ -58,7 +58,8 @@ class MainTest extends TestCase
                 $offsets->start2
             );
 
-            $iterable = ByWordRt::matchAdjustmentWhitespaces($subText1, $subText2, $delimitersIterable, $policy);
+            $iterable  = ByWordRt::matchAdjustmentWhitespaces($subText1, $subText2, $delimitersIterable, $policy);
+            $fragments = ByWordRt::convertIntoDiffFragments($iterable);
         }
 
         $test = true;

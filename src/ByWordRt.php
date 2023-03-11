@@ -12,6 +12,8 @@ use FDekker\Diff\Iterable\FairDiffIterableInterface;
 use FDekker\Entity\Character\CharSequenceInterface as CharSequence;
 use FDekker\Entity\Character\MergingCharSequence;
 use FDekker\Entity\Couple;
+use FDekker\Entity\LineFragmentSplitter\DiffFragment;
+use FDekker\Entity\LineFragmentSplitter\DiffFragmentInterface;
 use FDekker\Entity\Range;
 use FDekker\Enum\ComparisonPolicy;
 use InvalidArgumentException;
@@ -55,6 +57,19 @@ class ByWordRt
             default:
                 throw new InvalidArgumentException('invalid policy');
         }
+    }
+
+    /**
+     * @return DiffFragmentInterface[]
+     */
+    public static function convertIntoDiffFragments(DiffIterableInterface $changes): array
+    {
+        $fragments = [];
+        foreach ($changes->changes() as $range) {
+            $fragments[] = new DiffFragment($range->start1, $range->end1, $range->start2, $range->end2);
+        }
+
+        return $fragments;
     }
 
     /**
