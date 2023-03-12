@@ -102,7 +102,7 @@ class ByWordRt
                 }
 
                 if ($isAlpha) { // continuous script
-                    $chunks[] = new WordChunk($text, $offset, $offset + 1, $ch);
+                    $chunks[] = new WordChunk($text, $offset, $offset + 1);
                 } elseif ($ch === self::NEW_LINE) {
                     $chunks[] = new NewlineChunk($offset);
                 }
