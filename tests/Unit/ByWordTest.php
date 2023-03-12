@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DR\JBDiff\Tests;
+namespace DR\JBDiff\Tests\Unit;
 
 use DR\JBDiff\ByWord;
 use DR\JBDiff\Entity\NewLineChunk;

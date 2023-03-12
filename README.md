@@ -1,4 +1,47 @@
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.0-8892BF)](https://php.net/)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.1-8892BF)](https://php.net/)
+[![PHPStan](https://img.shields.io/badge/phpstan-enabled-4BC51D)](https://www.phpstan.com/)
+[![codecov](https://codecov.io/gh/123inkt/jbdiff/branch/master/graph/badge.svg)](https://app.codecov.io/gh/123inkt/jbdiff)
+[![Build Status](https://github.com/123inkt/jbdiff/workflows/Check/badge.svg?branch=master)](https://github.com/123inkt/jbdiff/actions)
+[![Build Status](https://github.com/123inkt/jbdiff/workflows/Test/badge.svg?branch=master)](https://github.com/123inkt/jbdiff/actions)
+
+
+# JBDiff
+
+A multi-line diff calcuation library based on Jetbrains' powerful IDE diff implementation.
+
+## Installation
+```bash
+composer require digitalrevolution/jbdiff
+```
+
+## Usage
+
+```php
+use DR\JBDiff\ByWordRt;
+use DR\JBDiff\Entity\Character\CharSequence;
+use DR\JBDiff\Enum\ComparisonPolicy;
+
+// strings are expected to utf8.
+$text1 = "public function bar(): int {";
+$text2 = "abstract public function foo(): float {";
+
+$lineBlocks = ByWordRt::compareAndSplit(CharSequence::fromString($text1), CharSequence::fromString($text2), ComparisonPolicy::DEFAULT);
+```
+Output (formatted):
+```php
+[
+    '+abstract',
+    ' public function ',
+    '-bar(): int',
+    '+foo(): float',
+    ' {'
+]
+```
+
+### Comparison policies
+- `DEFAULT`: the standard diff strategy and will take whitespace difference into account.
+- `TRIM_WHITESPACES`: will take out leading and trailing whitespaces out of the diff.
+- `IGNORE_WHITESPACES`: will take out all whitespaces changes out of the diff.
 
 ## About us
 
