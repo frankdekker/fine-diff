@@ -69,7 +69,7 @@ class MainTest extends TestCase
         }
 
         if ($start < mb_strlen($text1)) {
-            $result[] .= mb_substr($text1, $start);
+            $result[] .= ' ' . mb_substr($text1, $start);
         }
 
         $test = true;

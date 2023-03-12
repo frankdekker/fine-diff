@@ -25,7 +25,11 @@ use DR\JBDiff\Enum\ComparisonPolicy;
 $text1 = "public function bar(): int {";
 $text2 = "abstract public function foo(): float {";
 
-$lineBlocks = ByWordRt::compareAndSplit(CharSequence::fromString($text1), CharSequence::fromString($text2), ComparisonPolicy::DEFAULT);
+$lineBlocks = ByWordRt::compareAndSplit(
+    CharSequence::fromString($text1), 
+    CharSequence::fromString($text2), 
+    ComparisonPolicy::DEFAULT
+);
 ```
 Output (formatted):
 ```php
@@ -34,7 +38,7 @@ Output (formatted):
     ' public function ',
     '-bar(): int',
     '+foo(): float',
-    ' {'
+    '  {'
 ]
 ```
 
