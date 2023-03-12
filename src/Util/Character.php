@@ -41,7 +41,7 @@ class Character
             return false;
         }
 
-        // todo replace with lookup table
+        // TODO replace with lookup table
         return ($codePoint >= 33 && $codePoint <= 47) || // !"#$%&'()*+,-./
             ($codePoint >= 58 && $codePoint <= 64) ||    // :;<=>?@
             ($codePoint >= 91 && $codePoint <= 96) ||    // [\]^_`
@@ -55,7 +55,7 @@ class Character
 
     public static function isWhiteSpace(string $char): bool
     {
-        // todo optimize function call. Replace calls with const
+        // TODO optimize function call. Replace calls with const
         return self::IS_WHITESPACE[$char] ?? false;
     }
 
