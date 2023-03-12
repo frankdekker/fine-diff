@@ -20,41 +20,56 @@ class MainTest extends TestCase
      */
     public function testMain(): void
     {
-        $text1 = "/** this is a comment that was removed */\npublic function int bar() {";
-        $text2 = "public foo int test() {";
+        $text1 = '    public function findBy(array $predicates, SortInterface $sort, ConnectionConfig|string $database, bool $convertToUtf8 = true): array
+    {
+        return $this->persistence->findBy($predicates, $sort, $database, $convertToUtf8);
+';
+        $text2 = '    public function findBy(array $predicates, SortInterface $sort, ConnectionConfig|string $database, string $encoding = \'utf8\'): array
+    {
+        if ($encoding !== \'latin1\' && $encoding !== \'utf8\') {
+            throw new InvalidArgumentException(\'Expecting encoding to be `latin1` or `utf8`\');
+        }
+
+        return $this->persistence->findBy($predicates, $sort, $database, $encoding);
+';
 
         $lineBlocks = ByWordRt::compareAndSplit(CharSequence::fromString($text1), CharSequence::fromString($text2), ComparisonPolicy::DEFAULT);
 
         $start  = 0;
-        $result = "";
+        $result = [];
         foreach ($lineBlocks as $block) {
+            $offset = $block->offsets;
+            $subtext1 = mb_substr($text1, $offset->start1, $offset->end1 - $offset->start1);
+            $subtext2 = mb_substr($text2, $offset->start2, $offset->end2 - $offset->start2);
+
             foreach ($block->fragments as $fragment) {
-                if ($start < $fragment->getStartOffset1()) {
-                    $result .= mb_substr($text1, $start, $fragment->getStartOffset1() - $start);
+                $offsetStart = $start - $offset->start1;
+                if ($offsetStart < $fragment->getStartOffset1()) {
+                    $result[] = " " . mb_substr($subtext1, $offsetStart, $fragment->getStartOffset1() - $offsetStart);
                 }
 
                 if ($fragment->getStartOffset1() !== $fragment->getEndOffset1()) {
-                    $result .= "-`" . mb_substr(
-                            $text1,
+                    $result[] = "-" . mb_substr(
+                            $subtext1,
                             $fragment->getStartOffset1(),
                             $fragment->getEndOffset1() - $fragment->getStartOffset1()
-                        ) . "`";
+                        );
                 }
 
                 if ($fragment->getStartOffset2() !== $fragment->getEndOffset2()) {
-                    $result .= "+`" . mb_substr(
-                            $text2,
+                    $result[] = "+" . mb_substr(
+                            $subtext2,
                             $fragment->getStartOffset2(),
                             $fragment->getEndOffset2() - $fragment->getStartOffset2()
-                        ) . "`";
+                        );
                 }
 
-                $start = $fragment->getEndOffset1();
+                $start = $offset->start1 + $fragment->getEndOffset1();
             }
         }
 
         if ($start < mb_strlen($text1)) {
-            $result .= mb_substr($text1, $start);
+            $result[] .= mb_substr($text1, $start);
         }
 
         $test = true;

@@ -24,7 +24,7 @@ class NewLineChunk implements InlineChunk
         return $object instanceof self;
     }
 
-    public function hashCode(): int
+    public function hashCode(): float
     {
         return spl_object_id($this);
     }

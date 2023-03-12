@@ -9,5 +9,5 @@ interface InlineChunk extends EquatableInterface
 
     public function getOffset2(): int;
 
-    public function hashCode(): int;
+    public function hashCode(): float;
 }

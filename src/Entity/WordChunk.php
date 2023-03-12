@@ -7,7 +7,7 @@ use FDekker\Entity\Character\CharSequenceInterface;
 
 class WordChunk implements InlineChunk
 {
-    public function __construct(private CharSequenceInterface $text, private int $offset1, private int $offset2, private int $hash)
+    public function __construct(private CharSequenceInterface $text, private int $offset1, private int $offset2, private float $hash)
     {
     }
 
@@ -46,7 +46,7 @@ class WordChunk implements InlineChunk
         return $chars1 === $chars2;
     }
 
-    public function hashCode(): int
+    public function hashCode(): float
     {
         return $this->hash;
     }
