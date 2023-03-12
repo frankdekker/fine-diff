@@ -43,9 +43,9 @@ Output (formatted):
 ```
 
 ### Comparison policies
-- `DEFAULT`: the standard diff strategy and will take whitespace difference into account.
-- `TRIM_WHITESPACES`: will take out leading and trailing whitespaces out of the diff.
-- `IGNORE_WHITESPACES`: will take out all whitespaces changes out of the diff.
+- `DEFAULT`: the standard diff strategy and will take whitespace differences into account.
+- `TRIM_WHITESPACES`: will take leading and trailing whitespaces out of the diff.
+- `IGNORE_WHITESPACES`: will take all whitespace differences out of the diff.
 
 ## About us
 
