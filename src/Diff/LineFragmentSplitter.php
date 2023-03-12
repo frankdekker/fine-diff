@@ -1,4 +1,6 @@
 <?php
+// Copyright 2000-2019 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+// Copyright 2023 123inkt. Use of this source code is governed by the Apache 2.0 license.
 declare(strict_types=1);
 
 namespace DR\JBDiff\Diff;
@@ -148,8 +150,10 @@ class LineFragmentSplitter
         return Strings::equalsIgnoreWhitespaces(
             $this->text1,
             $this->text2,
-            $block->offsets->start1, $block->offsets->end1,
-            $block->offsets->start2, $block->offsets->end2
+            $block->offsets->start1,
+            $block->offsets->end1,
+            $block->offsets->start2,
+            $block->offsets->end2
         );
     }
 

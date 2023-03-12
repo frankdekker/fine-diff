@@ -1,4 +1,6 @@
 <?php
+// Copyright 2000-2019 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+// Copyright 2023 123inkt. Use of this source code is governed by the Apache 2.0 license.
 declare(strict_types=1);
 
 namespace DR\JBDiff\Util;
@@ -104,8 +106,8 @@ class TrimUtil
         return self::trimEndCallback($start, $end, static fn($index) => Character::isWhiteSpace($chars[$index]));
     }
 
-    public static function isEqualsIgnoreWhitespacesRange(CharSequence $text1, CharSequence $text2, Range $range): bool {
-
+    public static function isEqualsIgnoreWhitespacesRange(CharSequence $text1, CharSequence $text2, Range $range): bool
+    {
         return Strings::equalsIgnoreWhitespaces(
             $text1,
             $text2,
