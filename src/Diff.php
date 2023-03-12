@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker;
+namespace DR\JBDiff;
 
-use FDekker\Diff\DiffConfig;
-use FDekker\Diff\FilesTooBigForDiffException;
-use FDekker\Diff\LCS\MyersLCS;
-use FDekker\Diff\LCS\PatienceIntLCS;
-use FDekker\Entity\Change;
-use FDekker\Entity\EquatableInterface;
-use FDekker\Entity\NullChange;
-use FDekker\Util\ChangeBuilder;
-use FDekker\Util\Enumerator;
-use FDekker\Util\Reindexer;
+use DR\JBDiff\Diff\DiffConfig;
+use DR\JBDiff\Diff\FilesTooBigForDiffException;
+use DR\JBDiff\Diff\LCS\MyersLCS;
+use DR\JBDiff\Diff\LCS\PatienceIntLCS;
+use DR\JBDiff\Entity\Change;
+use DR\JBDiff\Entity\EquatableInterface;
+use DR\JBDiff\Entity\NullChange;
+use DR\JBDiff\Util\ChangeBuilder;
+use DR\JBDiff\Util\Enumerator;
+use DR\JBDiff\Util\Reindexer;
 
 class Diff
 {

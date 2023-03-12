@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker;
+namespace DR\JBDiff;
 
-use FDekker\Diff\DiffIterableUtil;
-use FDekker\Diff\DiffToBigException;
-use FDekker\Diff\Iterable\FairDiffIterableInterface;
-use FDekker\Diff\Matcher\ChangeBuilder;
-use FDekker\Entity\Character\CharSequenceInterface;
-use FDekker\Entity\Character\CharSequenceInterface as CharSequence;
-use FDekker\Entity\Character\CodePointsOffsets;
-use FDekker\Util\Character;
+use DR\JBDiff\Diff\DiffIterableUtil;
+use DR\JBDiff\Diff\DiffToBigException;
+use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
+use DR\JBDiff\Diff\Matcher\ChangeBuilder;
+use DR\JBDiff\Entity\Character\CharSequenceInterface;
+use DR\JBDiff\Entity\Character\CharSequenceInterface as CharSequence;
+use DR\JBDiff\Entity\Character\CodePointsOffsets;
+use DR\JBDiff\Util\Character;
 use IntlChar;
 
 class ByCharRt

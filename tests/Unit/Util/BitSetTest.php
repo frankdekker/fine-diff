@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Tests\Util;
+namespace DR\JBDiff\Tests\Unit\Util;
 
 use AssertionError;
-use FDekker\Util\BitSet;
+use DR\JBDiff\Util\BitSet;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Entity\LineFragmentSplitter;
+namespace DR\JBDiff\Entity\LineFragmentSplitter;
 
 /**
  * Modified part of the text

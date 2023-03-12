@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Util;
+namespace DR\JBDiff\Util;
 
 interface LCSBuilderInterface
 {

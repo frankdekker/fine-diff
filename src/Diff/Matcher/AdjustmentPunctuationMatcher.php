@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Diff\Matcher;
+namespace DR\JBDiff\Diff\Matcher;
 
-use FDekker\ByCharRt;
-use FDekker\ByWordRt;
-use FDekker\Diff\DiffIterableUtil;
-use FDekker\Diff\DiffToBigException;
-use FDekker\Diff\Iterable\FairDiffIterableInterface;
-use FDekker\Entity\Character\CharSequenceInterface;
-use FDekker\Entity\InlineChunk;
+use DR\JBDiff\ByCharRt;
+use DR\JBDiff\ByWordRt;
+use DR\JBDiff\Diff\DiffIterableUtil;
+use DR\JBDiff\Diff\DiffToBigException;
+use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
+use DR\JBDiff\Entity\Character\CharSequenceInterface;
+use DR\JBDiff\Entity\InlineChunk;
 use LogicException;
 
 class AdjustmentPunctuationMatcher

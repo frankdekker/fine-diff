@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Util;
+namespace DR\JBDiff\Util;
 
-use FDekker\Entity\EquatableInterface;
+use DR\JBDiff\Entity\EquatableInterface;
 
 class Enumerator
 {

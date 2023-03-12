@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Diff\Iterable;
+namespace DR\JBDiff\Diff\Iterable;
 
 /**
  * Marker interface indicating that elements are compared one-by-one.

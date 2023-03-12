@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Entity\Character;
+namespace DR\JBDiff\Entity\Character;
 
-use FDekker\Entity\EquatableInterface;
+use DR\JBDiff\Entity\EquatableInterface;
 use function count;
 use function assert;
 

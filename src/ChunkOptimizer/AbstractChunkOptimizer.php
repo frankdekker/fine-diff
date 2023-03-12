@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\ChunkOptimizer;
+namespace DR\JBDiff\ChunkOptimizer;
 
-use FDekker\Diff\DiffIterableUtil;
-use FDekker\Diff\Iterable\FairDiffIterableInterface;
-use FDekker\Entity\Range;
-use FDekker\Entity\Side;
-use FDekker\Util\TrimUtil;
+use DR\JBDiff\Diff\DiffIterableUtil;
+use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
+use DR\JBDiff\Entity\Range;
+use DR\JBDiff\Entity\Side;
+use DR\JBDiff\Util\TrimUtil;
 
 /**
  * @template T

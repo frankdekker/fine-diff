@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Enum;
+namespace DR\JBDiff\Enum;
 
 enum ComparisonPolicy
 {

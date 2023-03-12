@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Tests\Diff\Iterable;
+namespace DR\JBDiff\Tests\Unit\Diff\Iterable;
 
-use FDekker\Diff\Iterable\DiffChangeDiffIterable;
-use FDekker\Diff\Iterable\DiffIterableInterface;
-use FDekker\Diff\Iterable\FairDiffIterableWrapper;
-use FDekker\Entity\Change;
+use DR\JBDiff\Diff\Iterable\DiffChangeDiffIterable;
+use DR\JBDiff\Diff\Iterable\DiffIterableInterface;
+use DR\JBDiff\Diff\Iterable\FairDiffIterableWrapper;
+use DR\JBDiff\Entity\Change;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

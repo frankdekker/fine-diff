@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Diff;
+namespace DR\JBDiff\Diff;
 
-use FDekker\Diff\Iterable\FairDiffIterableInterface;
-use FDekker\Entity\Character\CharSequenceInterface;
-use FDekker\Entity\InlineChunk;
-use FDekker\Entity\LineFragmentSplitter\PendingChunk;
-use FDekker\Entity\LineFragmentSplitter\WordBlock;
-use FDekker\Entity\NewLineChunk;
-use FDekker\Entity\Range;
-use FDekker\Util\Strings;
+use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
+use DR\JBDiff\Entity\Character\CharSequenceInterface;
+use DR\JBDiff\Entity\InlineChunk;
+use DR\JBDiff\Entity\LineFragmentSplitter\PendingChunk;
+use DR\JBDiff\Entity\LineFragmentSplitter\WordBlock;
+use DR\JBDiff\Entity\NewLineChunk;
+use DR\JBDiff\Entity\Range;
+use DR\JBDiff\Util\Strings;
 
 class LineFragmentSplitter
 {

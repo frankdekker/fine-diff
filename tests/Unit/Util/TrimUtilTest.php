@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Tests\Util;
+namespace DR\JBDiff\Tests\Unit\Util;
 
-use FDekker\Util\TrimUtil;
+use DR\JBDiff\Util\TrimUtil;
 use PHPUnit\Framework\TestCase;
 
 use PHPUnit\Framework\Attributes\CoversClass;

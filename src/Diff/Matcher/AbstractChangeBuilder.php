@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Diff\Matcher;
+namespace DR\JBDiff\Diff\Matcher;
 
 abstract class AbstractChangeBuilder
 {

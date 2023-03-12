@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Tests\Entity;
+namespace DR\JBDiff\Tests\Unit\Entity;
 
-use FDekker\Entity\Side;
+use DR\JBDiff\Entity\Side;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

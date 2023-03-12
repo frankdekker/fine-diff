@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Entity\Character;
+namespace DR\JBDiff\Entity\Character;
 
 class CodePointsOffsets
 {

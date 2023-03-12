@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Entity;
+namespace DR\JBDiff\Entity;
 
-use FDekker\Util\Comparing;
+use DR\JBDiff\Util\Comparing;
 use Stringable;
 
 /**

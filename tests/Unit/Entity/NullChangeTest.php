@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Tests\Entity;
+namespace DR\JBDiff\Tests\Unit\Entity;
 
-use FDekker\Entity\NullChange;
+use DR\JBDiff\Entity\NullChange;
 use PHPUnit\Framework\TestCase;
 
 use PHPUnit\Framework\Attributes\CoversClass;

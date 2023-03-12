@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Diff\Iterable;
+namespace DR\JBDiff\Diff\Iterable;
 
-use FDekker\Entity\Change;
+use DR\JBDiff\Entity\Change;
 
 class DiffChangeDiffIterable extends AbstractChangeDiffIterable
 {

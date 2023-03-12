@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Tests\Util;
+namespace DR\JBDiff\Tests\Unit\Util;
 
-use FDekker\Util\Character;
+use DR\JBDiff\Util\Character;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

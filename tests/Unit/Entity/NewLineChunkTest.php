@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Tests\Entity;
+namespace DR\JBDiff\Tests\Unit\Entity;
 
-use FDekker\Entity\NewLineChunk;
-use FDekker\Entity\WordChunk;
+use DR\JBDiff\Entity\NewLineChunk;
+use DR\JBDiff\Entity\WordChunk;
 use PHPUnit\Framework\TestCase;
 
 use PHPUnit\Framework\Attributes\CoversClass;

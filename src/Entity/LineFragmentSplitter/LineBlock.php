@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Entity\LineFragmentSplitter;
+namespace DR\JBDiff\Entity\LineFragmentSplitter;
 
-use FDekker\Entity\Range;
+use DR\JBDiff\Entity\Range;
 
 class LineBlock
 {

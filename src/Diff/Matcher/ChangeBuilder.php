@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Diff\Matcher;
+namespace DR\JBDiff\Diff\Matcher;
 
-use FDekker\Diff\DiffIterableUtil;
-use FDekker\Diff\Iterable\DiffIterableInterface;
-use FDekker\Entity\Change;
+use DR\JBDiff\Diff\DiffIterableUtil;
+use DR\JBDiff\Diff\Iterable\DiffIterableInterface;
+use DR\JBDiff\Entity\Change;
 
 class ChangeBuilder extends AbstractChangeBuilder
 {

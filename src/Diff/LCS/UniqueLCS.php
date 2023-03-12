@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Diff\LCS;
+namespace DR\JBDiff\Diff\LCS;
 
-use FDekker\Util\Arrays;
+use DR\JBDiff\Util\Arrays;
 use function count;
 
 class UniqueLCS

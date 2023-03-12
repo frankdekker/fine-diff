@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Util;
+namespace DR\JBDiff\Util;
 
-use FDekker\Entity\Character\CharSequenceInterface as CharSequence;
-use FDekker\Entity\Range;
+use DR\JBDiff\Entity\Character\CharSequenceInterface as CharSequence;
+use DR\JBDiff\Entity\Range;
 
 class TrimUtil
 {

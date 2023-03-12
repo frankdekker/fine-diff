@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\ChunkOptimizer;
+namespace DR\JBDiff\ChunkOptimizer;
 
-use FDekker\Diff\Iterable\FairDiffIterableInterface;
-use FDekker\Entity\Character\CharSequenceInterface;
-use FDekker\Entity\InlineChunk;
-use FDekker\Entity\NewLineChunk;
-use FDekker\Entity\Range;
-use FDekker\Entity\Side;
-use FDekker\Util\Character;
+use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
+use DR\JBDiff\Entity\Character\CharSequenceInterface;
+use DR\JBDiff\Entity\InlineChunk;
+use DR\JBDiff\Entity\NewLineChunk;
+use DR\JBDiff\Entity\Range;
+use DR\JBDiff\Entity\Side;
+use DR\JBDiff\Util\Character;
 
 /**
  * @extends AbstractChunkOptimizer<InlineChunk>

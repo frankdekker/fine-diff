@@ -1,28 +1,28 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker;
+namespace DR\JBDiff;
 
-use FDekker\ChunkOptimizer\WordChunkOptimizer;
-use FDekker\Comparison\DefaultCorrector;
-use FDekker\Comparison\TrimSpacesCorrector;
-use FDekker\Diff\DiffIterableUtil;
-use FDekker\Diff\DiffToBigException;
-use FDekker\Diff\Iterable\DiffIterableInterface;
-use FDekker\Diff\Iterable\FairDiffIterableInterface;
-use FDekker\Diff\Iterable\SubiterableDiffIterable;
-use FDekker\Diff\LineFragmentSplitter;
-use FDekker\Entity\Character\CharSequenceInterface as CharSequence;
-use FDekker\Entity\Character\MergingCharSequence;
-use FDekker\Entity\InlineChunk;
-use FDekker\Entity\LineFragmentSplitter\DiffFragment;
-use FDekker\Entity\LineFragmentSplitter\DiffFragmentInterface;
-use FDekker\Entity\LineFragmentSplitter\LineBlock;
-use FDekker\Entity\NewLineChunk;
-use FDekker\Entity\Range;
-use FDekker\Entity\WordChunk;
-use FDekker\Enum\ComparisonPolicy;
-use FDekker\Util\Character;
+use DR\JBDiff\ChunkOptimizer\WordChunkOptimizer;
+use DR\JBDiff\Comparison\DefaultCorrector;
+use DR\JBDiff\Comparison\TrimSpacesCorrector;
+use DR\JBDiff\Diff\DiffIterableUtil;
+use DR\JBDiff\Diff\DiffToBigException;
+use DR\JBDiff\Diff\Iterable\DiffIterableInterface;
+use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
+use DR\JBDiff\Diff\Iterable\SubiterableDiffIterable;
+use DR\JBDiff\Diff\LineFragmentSplitter;
+use DR\JBDiff\Entity\Character\CharSequenceInterface as CharSequence;
+use DR\JBDiff\Entity\Character\MergingCharSequence;
+use DR\JBDiff\Entity\InlineChunk;
+use DR\JBDiff\Entity\LineFragmentSplitter\DiffFragment;
+use DR\JBDiff\Entity\LineFragmentSplitter\DiffFragmentInterface;
+use DR\JBDiff\Entity\LineFragmentSplitter\LineBlock;
+use DR\JBDiff\Entity\NewLineChunk;
+use DR\JBDiff\Entity\Range;
+use DR\JBDiff\Entity\WordChunk;
+use DR\JBDiff\Enum\ComparisonPolicy;
+use DR\JBDiff\Util\Character;
 use IntlChar;
 use InvalidArgumentException;
 

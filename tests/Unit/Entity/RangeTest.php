@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Tests\Entity;
+namespace DR\JBDiff\Tests\Unit\Entity;
 
-use FDekker\Entity\EquatableInterface;
-use FDekker\Entity\Range;
+use DR\JBDiff\Entity\EquatableInterface;
+use DR\JBDiff\Entity\Range;
 use PHPUnit\Framework\TestCase;
 
 use PHPUnit\Framework\Attributes\CoversClass;

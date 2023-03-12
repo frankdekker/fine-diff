@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Tests\Util;
+namespace DR\JBDiff\Tests\Unit\Util;
 
-use FDekker\Util\Arrays;
+use DR\JBDiff\Util\Arrays;
 use Generator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\TestWith;

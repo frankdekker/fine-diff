@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Tests;
+namespace DR\JBDiff\Tests;
 
-use FDekker\ByWordRt;
-use FDekker\Diff\DiffToBigException;
-use FDekker\Diff\Iterable\FairDiffIterableWrapper;
-use FDekker\Diff\Iterable\InvertedDiffIterableWrapper;
-use FDekker\Diff\Iterable\RangesDiffIterable;
-use FDekker\Entity\Character\CharSequence;
-use FDekker\Entity\Range;
-use FDekker\Enum\ComparisonPolicy;
+use DR\JBDiff\ByWordRt;
+use DR\JBDiff\Diff\DiffToBigException;
+use DR\JBDiff\Diff\Iterable\FairDiffIterableWrapper;
+use DR\JBDiff\Diff\Iterable\InvertedDiffIterableWrapper;
+use DR\JBDiff\Diff\Iterable\RangesDiffIterable;
+use DR\JBDiff\Entity\Character\CharSequence;
+use DR\JBDiff\Entity\Range;
+use DR\JBDiff\Enum\ComparisonPolicy;
 use PHPUnit\Framework\TestCase;
 
 class MainTest extends TestCase
@@ -82,7 +82,5 @@ class MainTest extends TestCase
         $rangeIterable    = new RangesDiffIterable([$range1, $range2], 12, 4);
         $invertedIterable = new InvertedDiffIterableWrapper($rangeIterable);
         $iterable         = new FairDiffIterableWrapper($invertedIterable);
-
-
     }
 }

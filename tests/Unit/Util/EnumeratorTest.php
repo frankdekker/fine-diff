@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Tests\Util;
+namespace DR\JBDiff\Tests\Unit\Util;
 
-use FDekker\Entity\WordChunk;
-use FDekker\Util\Enumerator;
+use DR\JBDiff\Entity\WordChunk;
+use DR\JBDiff\Util\Enumerator;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

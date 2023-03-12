@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Diff;
+namespace DR\JBDiff\Diff;
 
-use FDekker\Diff;
-use FDekker\Diff\Iterable\DiffChangeDiffIterable;
-use FDekker\Diff\Iterable\DiffIterableInterface;
-use FDekker\Diff\Iterable\FairDiffIterableInterface;
-use FDekker\Diff\Iterable\FairDiffIterableWrapper;
-use FDekker\Diff\Iterable\InvertedDiffIterableWrapper;
-use FDekker\Diff\Iterable\RangesDiffIterable;
-use FDekker\Diff\Matcher\AdjustmentPunctuationMatcher;
-use FDekker\Entity\Change;
-use FDekker\Entity\Character\CharSequenceInterface;
-use FDekker\Entity\EquatableInterface;
-use FDekker\Entity\InlineChunk;
-use FDekker\Entity\Range;
+use DR\JBDiff\Diff;
+use DR\JBDiff\Diff\Iterable\DiffChangeDiffIterable;
+use DR\JBDiff\Diff\Iterable\DiffIterableInterface;
+use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
+use DR\JBDiff\Diff\Iterable\FairDiffIterableWrapper;
+use DR\JBDiff\Diff\Iterable\InvertedDiffIterableWrapper;
+use DR\JBDiff\Diff\Iterable\RangesDiffIterable;
+use DR\JBDiff\Diff\Matcher\AdjustmentPunctuationMatcher;
+use DR\JBDiff\Entity\Change;
+use DR\JBDiff\Entity\Character\CharSequenceInterface;
+use DR\JBDiff\Entity\EquatableInterface;
+use DR\JBDiff\Entity\InlineChunk;
+use DR\JBDiff\Entity\Range;
 
 class DiffIterableUtil
 {

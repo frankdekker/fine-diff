@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Util;
+namespace DR\JBDiff\Util;
 
-use FDekker\Entity\Change;
+use DR\JBDiff\Entity\Change;
 
 class ChangeBuilder implements LCSBuilderInterface
 {

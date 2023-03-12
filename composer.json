@@ -1,6 +1,6 @@
 {
-    "name": "fdekker/fine-diff",
-    "description": "Fine diff library based on Jetbrains' implementation",
+    "name": "digitalrevolution/jbdiff",
+    "description": "A diff library based on Jetbrains' implementation",
     "type": "library",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
@@ -12,13 +12,13 @@
     },
     "autoload": {
         "psr-4": {
-            "FDekker\\": "src/"
+            "DR\\JBDiff\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "FDekker\\Unit\\": "tests/Unit",
-            "FDekker\\": "tests/"
+            "DR\\JBDiff\\Tests\\Unit\\": "tests/Unit",
+            "DR\\JBDiff\\Tests\\": "tests/"
         }
     },
     "require": {

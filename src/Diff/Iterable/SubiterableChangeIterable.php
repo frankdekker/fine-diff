@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Diff\Iterable;
+namespace DR\JBDiff\Diff\Iterable;
 
-use FDekker\Entity\Range;
+use DR\JBDiff\Entity\Range;
 
 class SubiterableChangeIterable implements ChangeIterableInterface
 {

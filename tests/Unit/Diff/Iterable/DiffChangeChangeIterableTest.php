@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Tests\Diff\Iterable;
+namespace DR\JBDiff\Tests\Unit\Diff\Iterable;
 
-use FDekker\Diff\Iterable\DiffChangeChangeIterable;
-use FDekker\Entity\Change;
+use DR\JBDiff\Diff\Iterable\DiffChangeChangeIterable;
+use DR\JBDiff\Entity\Change;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace FDekker\Comparison;
+namespace DR\JBDiff\Comparison;
 
-use FDekker\Diff\DiffIterableUtil;
-use FDekker\Diff\Iterable\DiffIterableInterface;
-use FDekker\Entity\Character\CharSequenceInterface;
-use FDekker\Entity\Range;
-use FDekker\Util\Character;
-use FDekker\Util\Strings;
-use FDekker\Util\TrimUtil;
+use DR\JBDiff\Diff\DiffIterableUtil;
+use DR\JBDiff\Diff\Iterable\DiffIterableInterface;
+use DR\JBDiff\Entity\Character\CharSequenceInterface;
+use DR\JBDiff\Entity\Range;
+use DR\JBDiff\Util\Character;
+use DR\JBDiff\Util\Strings;
+use DR\JBDiff\Util\TrimUtil;
 
 class TrimSpacesCorrector
 {
