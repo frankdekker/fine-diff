@@ -7,13 +7,16 @@ use FDekker\Entity\Character\CharSequenceInterface;
 
 class WordChunk implements InlineChunk
 {
-    public function __construct(private CharSequenceInterface $text, private int $offset1, private int $offset2, private float $hash)
+    private string $subtext;
+
+    public function __construct(private CharSequenceInterface $text, private int $offset1, private int $offset2)
     {
+        $this->subtext = (string)$this->text->subSequence($this->offset1, $this->offset2);
     }
 
     public function getContent(): string
     {
-        return (string)$this->text->subSequence($this->offset1, $this->offset2);
+        return $this->subtext;
     }
 
     public function getOffset1(): int
@@ -36,18 +39,6 @@ class WordChunk implements InlineChunk
             return true;
         }
 
-        if ($this->hash !== $object->hash) {
-            return false;
-        }
-
-        $chars1 = array_slice($this->text->chars(), $this->offset1, $this->offset2 - $this->offset1);
-        $chars2 = array_slice($object->text->chars(), $object->offset1, $object->offset2 - $object->offset1);
-
-        return $chars1 === $chars2;
-    }
-
-    public function hashCode(): float
-    {
-        return $this->hash;
+        return $this->subtext === $object->subtext;
     }
 }

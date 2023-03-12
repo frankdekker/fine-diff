@@ -84,7 +84,6 @@ class ByWordRt
     public static function getInlineChunks(CharSequence $text): array
     {
         $wordStart = -1;
-        $wordHash  = 0.0;
         $chunks    = [];
 
         foreach ($text->chars() as $offset => $char) {
@@ -95,12 +94,10 @@ class ByWordRt
             if ($isWordPart) {
                 if ($wordStart === -1) {
                     $wordStart = $offset;
-                    $wordHash  = 0;
                 }
-                $wordHash = $wordHash * 31 + $ch;
             } else {
                 if ($wordStart !== -1) {
-                    $chunks[]  = new WordChunk($text, $wordStart, $offset, $wordHash);
+                    $chunks[]  = new WordChunk($text, $wordStart, $offset);
                     $wordStart = -1;
                 }
 
@@ -113,7 +110,7 @@ class ByWordRt
         }
 
         if ($wordStart !== -1) {
-            $chunks[] = new WordChunk($text, $wordStart, $text->length(), $wordHash);
+            $chunks[] = new WordChunk($text, $wordStart, $text->length());
         }
 
         return $chunks;
