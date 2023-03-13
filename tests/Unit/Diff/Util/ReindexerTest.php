@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DR\JBDiff\Tests\Unit\Util;
+namespace DR\JBDiff\Tests\Unit\Diff\Util;
 
 use DR\JBDiff\Diff\Util\Reindexer;
 use PHPUnit\Framework\Attributes\CoversClass;
