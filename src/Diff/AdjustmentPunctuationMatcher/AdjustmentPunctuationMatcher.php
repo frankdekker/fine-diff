@@ -1,5 +1,5 @@
 <?php
-// Copyright 2000-2019 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+// Copyright 2000-2021 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 // Copyright 2023 Digital Revolution BV (123inkt.nl). Use of this source code is governed by the Apache 2.0 license.
 declare(strict_types=1);
 
@@ -15,6 +15,12 @@ use DR\JBDiff\Entity\Chunk\InlineChunk;
 use LogicException;
 use function count;
 
+/**
+ * sample: "[ X { A ! B } Y ]" "( X ... Y )" will lead to comparison of 3 groups of separators
+ *         "["  vs "(",
+ *         "{" + "}" vs "..."
+ *         "]"  vs ")"
+ */
 class AdjustmentPunctuationMatcher
 {
     private readonly int           $len1;

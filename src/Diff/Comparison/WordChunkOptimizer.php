@@ -1,5 +1,5 @@
 <?php
-// Copyright 2000-2019 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+// Copyright 2000-2021 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 // Copyright 2023 Digital Revolution BV (123inkt.nl). Use of this source code is governed by the Apache 2.0 license.
 declare(strict_types=1);
 
@@ -14,6 +14,14 @@ use DR\JBDiff\Entity\Side;
 use DR\JBDiff\Util\Character;
 
 /**
+ * 1. Minimise amount of chunks
+ *      good: "AX[AB]" - "[AB]"
+ *      bad: "[A]XA[B]" - "[A][B]"
+ *
+ * 2. Minimise amount of modified 'sentences', where sentence is a sequence of words, that are not separated by whitespace
+ *      good: "[AX] [AZ]" - "[AX] AY [AZ]"
+ *      bad: "[AX A][Z]" - "[AX A]Y A[Z]"
+ *      ex: "1.0.123 1.0.155" vs "1.0.123 1.0.134 1.0.155"
  * @extends AbstractChunkOptimizer<InlineChunk>
  */
 class WordChunkOptimizer extends AbstractChunkOptimizer
