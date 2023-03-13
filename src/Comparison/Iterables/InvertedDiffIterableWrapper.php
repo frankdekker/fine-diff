@@ -3,9 +3,9 @@
 // Copyright 2023 Digital Revolution BV (123inkt.nl). Use of this source code is governed by the Apache 2.0 license.
 declare(strict_types=1);
 
-namespace DR\JBDiff\Diff\Iterable;
+namespace DR\JBDiff\Comparison\Iterables;
 
-class FairDiffIterableWrapper implements FairDiffIterableInterface
+class InvertedDiffIterableWrapper implements DiffIterableInterface
 {
     public function __construct(private readonly DiffIterableInterface $iterable)
     {
@@ -21,19 +21,13 @@ class FairDiffIterableWrapper implements FairDiffIterableInterface
         return $this->iterable->getLength2();
     }
 
-    /**
-     * @inheritDoc
-     */
     public function changes(): CursorIteratorInterface
     {
-        return $this->iterable->changes();
+        return $this->iterable->unchanged();
     }
 
-    /**
-     * @inheritDoc
-     */
     public function unchanged(): CursorIteratorInterface
     {
-        return $this->iterable->unchanged();
+        return $this->iterable->changes();
     }
 }

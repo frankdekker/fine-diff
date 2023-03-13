@@ -3,22 +3,22 @@
 // Copyright 2023 Digital Revolution BV (123inkt.nl). Use of this source code is governed by the Apache 2.0 license.
 declare(strict_types=1);
 
-namespace DR\JBDiff\Diff\Iterable;
+namespace DR\JBDiff\Comparison\Iterables;
 
-abstract class AbstractChangeDiffIterable implements DiffIterableInterface
+class FairDiffIterableWrapper implements FairDiffIterableInterface
 {
-    public function __construct(private readonly int $length1, private readonly int $length2)
+    public function __construct(private readonly DiffIterableInterface $iterable)
     {
     }
 
     public function getLength1(): int
     {
-        return $this->length1;
+        return $this->iterable->getLength1();
     }
 
     public function getLength2(): int
     {
-        return $this->length2;
+        return $this->iterable->getLength2();
     }
 
     /**
@@ -26,7 +26,7 @@ abstract class AbstractChangeDiffIterable implements DiffIterableInterface
      */
     public function changes(): CursorIteratorInterface
     {
-        return new ChangedIterator($this->createChangeIterable());
+        return $this->iterable->changes();
     }
 
     /**
@@ -34,8 +34,6 @@ abstract class AbstractChangeDiffIterable implements DiffIterableInterface
      */
     public function unchanged(): CursorIteratorInterface
     {
-        return new UnchangedIterator($this->createChangeIterable(), $this->length1, $this->length2);
+        return $this->iterable->unchanged();
     }
-
-    abstract protected function createChangeIterable(): ChangeIterableInterface;
 }

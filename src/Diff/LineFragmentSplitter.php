@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Diff;
 
-use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
+use DR\JBDiff\Comparison\Iterables\FairDiffIterableInterface;
 use DR\JBDiff\Entity\Character\CharSequenceInterface;
 use DR\JBDiff\Entity\InlineChunk;
 use DR\JBDiff\Entity\LineFragmentSplitter\PendingChunk;

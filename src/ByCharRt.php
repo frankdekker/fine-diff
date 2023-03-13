@@ -5,9 +5,9 @@ declare(strict_types=1);
 
 namespace DR\JBDiff;
 
+use DR\JBDiff\Comparison\Iterables\FairDiffIterableInterface;
 use DR\JBDiff\Diff\DiffIterableUtil;
 use DR\JBDiff\Diff\DiffToBigException;
-use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
 use DR\JBDiff\Diff\Matcher\ChangeBuilder;
 use DR\JBDiff\Entity\Character\CharSequenceInterface;
 use DR\JBDiff\Entity\Character\CharSequenceInterface as CharSequence;

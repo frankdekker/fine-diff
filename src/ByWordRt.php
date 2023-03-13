@@ -5,14 +5,14 @@ declare(strict_types=1);
 
 namespace DR\JBDiff;
 
-use DR\JBDiff\ChunkOptimizer\WordChunkOptimizer;
 use DR\JBDiff\Comparison\DefaultCorrector;
+use DR\JBDiff\Comparison\Iterables\DiffIterableInterface;
+use DR\JBDiff\Comparison\Iterables\FairDiffIterableInterface;
+use DR\JBDiff\Comparison\Iterables\SubiterableDiffIterable;
 use DR\JBDiff\Comparison\TrimSpacesCorrector;
+use DR\JBDiff\Comparison\WordChunkOptimizer;
 use DR\JBDiff\Diff\DiffIterableUtil;
 use DR\JBDiff\Diff\DiffToBigException;
-use DR\JBDiff\Diff\Iterable\DiffIterableInterface;
-use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
-use DR\JBDiff\Diff\Iterable\SubiterableDiffIterable;
 use DR\JBDiff\Diff\LineFragmentSplitter;
 use DR\JBDiff\Entity\Character\CharSequenceInterface as CharSequence;
 use DR\JBDiff\Entity\Character\MergingCharSequence;

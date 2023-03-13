@@ -3,13 +3,14 @@
 // Copyright 2023 Digital Revolution BV (123inkt.nl). Use of this source code is governed by the Apache 2.0 license.
 declare(strict_types=1);
 
-namespace DR\JBDiff\ChunkOptimizer;
+namespace DR\JBDiff\Comparison;
 
+use DR\JBDiff\Comparison\Iterables\FairDiffIterableInterface;
 use DR\JBDiff\Diff\DiffIterableUtil;
-use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
 use DR\JBDiff\Entity\Range;
 use DR\JBDiff\Entity\Side;
 use DR\JBDiff\Util\TrimUtil;
+use function count;
 
 /**
  * @template T

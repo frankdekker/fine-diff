@@ -5,8 +5,8 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Comparison;
 
+use DR\JBDiff\Comparison\Iterables\DiffIterableInterface;
 use DR\JBDiff\Diff\DiffIterableUtil;
-use DR\JBDiff\Diff\Iterable\DiffIterableInterface;
 use DR\JBDiff\Entity\Character\CharSequenceInterface;
 use DR\JBDiff\Entity\Range;
 use DR\JBDiff\Util\TrimUtil;

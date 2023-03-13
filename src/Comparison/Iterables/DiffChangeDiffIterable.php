@@ -3,22 +3,19 @@
 // Copyright 2023 Digital Revolution BV (123inkt.nl). Use of this source code is governed by the Apache 2.0 license.
 declare(strict_types=1);
 
-namespace DR\JBDiff\Diff\Iterable;
+namespace DR\JBDiff\Comparison\Iterables;
 
-use DR\JBDiff\Entity\Range;
+use DR\JBDiff\Entity\Change;
 
-class RangesDiffIterable extends AbstractChangeDiffIterable
+class DiffChangeDiffIterable extends AbstractChangeDiffIterable
 {
-    /**
-     * @param Range[] $ranges
-     */
-    public function __construct(private readonly array $ranges, int $length1, int $length2)
+    public function __construct(private readonly ?Change $change, int $length1, int $length2)
     {
         parent::__construct($length1, $length2);
     }
 
     protected function createChangeIterable(): ChangeIterableInterface
     {
-        return new RangesChangeIterable($this->ranges);
+        return new DiffChangeChangeIterable($this->change);
     }
 }

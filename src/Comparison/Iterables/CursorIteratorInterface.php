@@ -3,19 +3,20 @@
 // Copyright 2023 Digital Revolution BV (123inkt.nl). Use of this source code is governed by the Apache 2.0 license.
 declare(strict_types=1);
 
-namespace DR\JBDiff\Diff\Iterable;
+namespace DR\JBDiff\Comparison\Iterables;
 
-interface ChangeIterableInterface
+use IteratorAggregate;
+
+/**
+ * @template T
+ * @extends IteratorAggregate<T>
+ */
+interface CursorIteratorInterface extends IteratorAggregate
 {
-    public function valid(): bool;
+    public function hasNext(): bool;
 
-    public function next(): void;
-
-    public function getStart1(): int;
-
-    public function getStart2(): int;
-
-    public function getEnd1(): int;
-
-    public function getEnd2(): int;
+    /**
+     * @return T
+     */
+    public function next(): mixed;
 }

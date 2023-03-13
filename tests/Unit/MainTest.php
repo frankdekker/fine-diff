@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace DR\JBDiff\Tests\Unit;
 
 use DR\JBDiff\ByWordRt;
+use DR\JBDiff\Comparison\Iterables\FairDiffIterableWrapper;
+use DR\JBDiff\Comparison\Iterables\InvertedDiffIterableWrapper;
+use DR\JBDiff\Comparison\Iterables\RangesDiffIterable;
 use DR\JBDiff\Diff\DiffToBigException;
-use DR\JBDiff\Diff\Iterable\FairDiffIterableWrapper;
-use DR\JBDiff\Diff\Iterable\InvertedDiffIterableWrapper;
-use DR\JBDiff\Diff\Iterable\RangesDiffIterable;
 use DR\JBDiff\Entity\Character\CharSequence;
 use DR\JBDiff\Entity\Range;
 use DR\JBDiff\Enum\ComparisonPolicy;

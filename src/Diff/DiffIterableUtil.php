@@ -5,13 +5,13 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Diff;
 
+use DR\JBDiff\Comparison\Iterables\DiffChangeDiffIterable;
+use DR\JBDiff\Comparison\Iterables\DiffIterableInterface;
+use DR\JBDiff\Comparison\Iterables\FairDiffIterableInterface;
+use DR\JBDiff\Comparison\Iterables\FairDiffIterableWrapper;
+use DR\JBDiff\Comparison\Iterables\InvertedDiffIterableWrapper;
+use DR\JBDiff\Comparison\Iterables\RangesDiffIterable;
 use DR\JBDiff\Diff;
-use DR\JBDiff\Diff\Iterable\DiffChangeDiffIterable;
-use DR\JBDiff\Diff\Iterable\DiffIterableInterface;
-use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
-use DR\JBDiff\Diff\Iterable\FairDiffIterableWrapper;
-use DR\JBDiff\Diff\Iterable\InvertedDiffIterableWrapper;
-use DR\JBDiff\Diff\Iterable\RangesDiffIterable;
 use DR\JBDiff\Diff\Matcher\AdjustmentPunctuationMatcher;
 use DR\JBDiff\Entity\Change;
 use DR\JBDiff\Entity\Character\CharSequenceInterface;

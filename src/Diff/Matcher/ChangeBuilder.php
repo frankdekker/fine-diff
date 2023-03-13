@@ -5,8 +5,8 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Diff\Matcher;
 
+use DR\JBDiff\Comparison\Iterables\DiffIterableInterface;
 use DR\JBDiff\Diff\DiffIterableUtil;
-use DR\JBDiff\Diff\Iterable\DiffIterableInterface;
 use DR\JBDiff\Entity\Change;
 
 class ChangeBuilder extends AbstractChangeBuilder

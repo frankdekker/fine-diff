@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Tests\Unit\Diff\Iterable;
 
-use DR\JBDiff\Diff\Iterable\DiffChangeDiffIterable;
-use DR\JBDiff\Diff\Iterable\DiffIterableInterface;
-use DR\JBDiff\Diff\Iterable\FairDiffIterableWrapper;
+use DR\JBDiff\Comparison\Iterables\DiffChangeDiffIterable;
+use DR\JBDiff\Comparison\Iterables\DiffIterableInterface;
+use DR\JBDiff\Comparison\Iterables\FairDiffIterableWrapper;
 use DR\JBDiff\Entity\Change;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;

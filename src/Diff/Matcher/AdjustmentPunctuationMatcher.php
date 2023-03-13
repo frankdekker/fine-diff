@@ -7,9 +7,9 @@ namespace DR\JBDiff\Diff\Matcher;
 
 use DR\JBDiff\ByCharRt;
 use DR\JBDiff\ByWordRt;
+use DR\JBDiff\Comparison\Iterables\FairDiffIterableInterface;
 use DR\JBDiff\Diff\DiffIterableUtil;
 use DR\JBDiff\Diff\DiffToBigException;
-use DR\JBDiff\Diff\Iterable\FairDiffIterableInterface;
 use DR\JBDiff\Entity\Character\CharSequenceInterface;
 use DR\JBDiff\Entity\InlineChunk;
 use LogicException;

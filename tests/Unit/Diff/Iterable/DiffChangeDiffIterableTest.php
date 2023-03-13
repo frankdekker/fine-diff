@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Tests\Unit\Diff\Iterable;
 
-use DR\JBDiff\Diff\Iterable\DiffChangeDiffIterable;
+use DR\JBDiff\Comparison\Iterables\DiffChangeDiffIterable;
 use DR\JBDiff\Entity\Change;
 use DR\JBDiff\Entity\Range;
 use PHPUnit\Framework\Attributes\CoversClass;
