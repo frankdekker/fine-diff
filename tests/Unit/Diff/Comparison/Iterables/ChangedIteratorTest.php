@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DR\JBDiff\Tests\Unit\Diff\Iterable;
+namespace DR\JBDiff\Tests\Unit\Diff\Comparison\Iterables;
 
 use DR\JBDiff\Diff\Comparison\Iterables\ChangedIterator;
 use DR\JBDiff\Diff\Comparison\Iterables\DiffChangeChangeIterable;
