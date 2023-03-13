@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Tests\Unit;
 
-use DR\JBDiff\ByWordRt;
 use DR\JBDiff\ComparisonPolicy;
+use DR\JBDiff\Diff\ByWordRt;
 use DR\JBDiff\Diff\Comparison\Iterables\FairDiffIterableWrapper;
 use DR\JBDiff\Diff\Comparison\Iterables\InvertedDiffIterableWrapper;
 use DR\JBDiff\Diff\Comparison\Iterables\RangesDiffIterable;

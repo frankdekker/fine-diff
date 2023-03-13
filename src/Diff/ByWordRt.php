@@ -3,9 +3,9 @@
 // Copyright 2023 Digital Revolution BV (123inkt.nl). Use of this source code is governed by the Apache 2.0 license.
 declare(strict_types=1);
 
-namespace DR\JBDiff;
+namespace DR\JBDiff\Diff;
 
-use DR\JBDiff\Diff\ByCharRt;
+use DR\JBDiff\ComparisonPolicy;
 use DR\JBDiff\Diff\Comparison\DefaultCorrector;
 use DR\JBDiff\Diff\Comparison\Iterables\DiffIterableInterface;
 use DR\JBDiff\Diff\Comparison\Iterables\FairDiffIterableInterface;
@@ -13,7 +13,6 @@ use DR\JBDiff\Diff\Comparison\Iterables\SubiterableDiffIterable;
 use DR\JBDiff\Diff\Comparison\LineFragmentSplitter;
 use DR\JBDiff\Diff\Comparison\TrimSpacesCorrector;
 use DR\JBDiff\Diff\Comparison\WordChunkOptimizer;
-use DR\JBDiff\Diff\DiffIterableUtil;
 use DR\JBDiff\Diff\Util\DiffToBigException;
 use DR\JBDiff\Entity\Character\CharSequenceInterface as CharSequence;
 use DR\JBDiff\Entity\Character\MergingCharSequence;

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Tests\Unit;
 
-use DR\JBDiff\ByWordRt;
+use DR\JBDiff\Diff\ByWordRt;
 use DR\JBDiff\Entity\Character\CharSequence as CS;
 use DR\JBDiff\Entity\Chunk\NewLineChunk;
 use DR\JBDiff\Entity\Chunk\WordChunk;

@@ -5,8 +5,8 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Diff\AdjustmentPunctuationMatcher;
 
-use DR\JBDiff\ByWordRt;
 use DR\JBDiff\Diff\ByCharRt;
+use DR\JBDiff\Diff\ByWordRt;
 use DR\JBDiff\Diff\Comparison\Iterables\FairDiffIterableInterface;
 use DR\JBDiff\Diff\DiffIterableUtil;
 use DR\JBDiff\Diff\Util\DiffToBigException;

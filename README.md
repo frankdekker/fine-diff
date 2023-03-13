@@ -17,17 +17,14 @@ composer require digitalrevolution/jbdiff
 ## Usage
 
 ```php
-use DR\JBDiff\ByWordRt;use DR\JBDiff\ComparisonPolicy;use DR\JBDiff\Entity\Character\CharSequence;
+use DR\JBDiff\ComparisonPolicy;
+use DR\JBDiff\JBDiff;
 
 // strings are expected to utf8.
 $text1 = "public function bar(): int {";
 $text2 = "abstract public function foo(): float {";
 
-$lineBlocks = ByWordRt::compareAndSplit(
-    CharSequence::fromString($text1), 
-    CharSequence::fromString($text2), 
-    ComparisonPolicy::DEFAULT
-);
+$lineBlocks = JBDiff::compareAndSplit($text1, $text2, ComparisonPolicy::DEFAULT);
 ```
 Output (formatted):
 ```php
