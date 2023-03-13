@@ -17,9 +17,7 @@ composer require digitalrevolution/jbdiff
 ## Usage
 
 ```php
-use DR\JBDiff\ByWordRt;
-use DR\JBDiff\Entity\Character\CharSequence;
-use DR\JBDiff\Enum\ComparisonPolicy;
+use DR\JBDiff\ByWordRt;use DR\JBDiff\ComparisonPolicy;use DR\JBDiff\Entity\Character\CharSequence;
 
 // strings are expected to utf8.
 $text1 = "public function bar(): int {";

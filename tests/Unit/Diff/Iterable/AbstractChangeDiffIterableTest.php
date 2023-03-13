@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Tests\Unit\Diff\Iterable;
 
-use DR\JBDiff\Comparison\Iterables\AbstractChangeDiffIterable;
-use DR\JBDiff\Comparison\Iterables\ChangeIterableInterface;
+use DR\JBDiff\Diff\Comparison\Iterables\AbstractChangeDiffIterable;
+use DR\JBDiff\Diff\Comparison\Iterables\ChangeIterableInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

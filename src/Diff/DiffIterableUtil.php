@@ -5,14 +5,16 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Diff;
 
-use DR\JBDiff\Comparison\Iterables\DiffChangeDiffIterable;
-use DR\JBDiff\Comparison\Iterables\DiffIterableInterface;
-use DR\JBDiff\Comparison\Iterables\FairDiffIterableInterface;
-use DR\JBDiff\Comparison\Iterables\FairDiffIterableWrapper;
-use DR\JBDiff\Comparison\Iterables\InvertedDiffIterableWrapper;
-use DR\JBDiff\Comparison\Iterables\RangesDiffIterable;
-use DR\JBDiff\Diff;
-use DR\JBDiff\Diff\Matcher\AdjustmentPunctuationMatcher;
+use DR\JBDiff\Diff\AdjustmentPunctuationMatcher\AdjustmentPunctuationMatcher;
+use DR\JBDiff\Diff\Comparison\Iterables\DiffChangeDiffIterable;
+use DR\JBDiff\Diff\Comparison\Iterables\DiffIterableInterface;
+use DR\JBDiff\Diff\Comparison\Iterables\FairDiffIterableInterface;
+use DR\JBDiff\Diff\Comparison\Iterables\FairDiffIterableWrapper;
+use DR\JBDiff\Diff\Comparison\Iterables\InvertedDiffIterableWrapper;
+use DR\JBDiff\Diff\Comparison\Iterables\RangesDiffIterable;
+use DR\JBDiff\Diff\Util\Diff;
+use DR\JBDiff\Diff\Util\DiffToBigException;
+use DR\JBDiff\Diff\Util\FilesTooBigForDiffException;
 use DR\JBDiff\Entity\Change\Change;
 use DR\JBDiff\Entity\Character\CharSequenceInterface;
 use DR\JBDiff\Entity\Chunk\InlineChunk;
