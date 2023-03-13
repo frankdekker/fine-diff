@@ -24,7 +24,7 @@ use DR\JBDiff\JBDiff;
 $text1 = "public function bar(): int {";
 $text2 = "abstract public function foo(): float {";
 
-$lineBlocks = JBDiff::compareAndSplit($text1, $text2, ComparisonPolicy::DEFAULT);
+$lineBlocks = JBDiff::compare($text1, $text2, ComparisonPolicy::DEFAULT);
 ```
 Output (formatted):
 ```php
