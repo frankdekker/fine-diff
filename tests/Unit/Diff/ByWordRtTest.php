@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DR\JBDiff\Tests\Unit;
+namespace DR\JBDiff\Tests\Unit\Diff;
 
 use DR\JBDiff\Diff\ByWordRt;
 use DR\JBDiff\Entity\Character\CharSequence as CS;
@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(ByWordRt::class)]
-class ByWordTest extends TestCase
+class ByWordRtTest extends TestCase
 {
     public function testGetInlineChunksTwoWords(): void
     {
