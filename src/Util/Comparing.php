@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace DR\JBDiff\Util;
 
 use DR\JBDiff\Entity\EquatableInterface;
+use RuntimeException;
 
 class Comparing
 {
@@ -18,10 +19,12 @@ class Comparing
             return false;
         }
 
+        // @codeCoverageIgnoreStart
         if (is_array($arg1) && is_array($arg2)) {
-            // TODO implements Arrays.equals
-            return false;
+            // @see https://github.com/JetBrains/intellij-community/blob/master/platform/util-rt/src/com/intellij/openapi/util/Comparing.java
+            throw new RuntimeException('Not implemented');
         }
+        // @codeCoverageIgnoreEnd
 
         if ($arg1 instanceof EquatableInterface && $arg2 instanceof EquatableInterface) {
             return $arg1->equals($arg2);
