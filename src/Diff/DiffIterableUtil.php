@@ -13,10 +13,10 @@ use DR\JBDiff\Comparison\Iterables\InvertedDiffIterableWrapper;
 use DR\JBDiff\Comparison\Iterables\RangesDiffIterable;
 use DR\JBDiff\Diff;
 use DR\JBDiff\Diff\Matcher\AdjustmentPunctuationMatcher;
-use DR\JBDiff\Entity\Change;
+use DR\JBDiff\Entity\Change\Change;
 use DR\JBDiff\Entity\Character\CharSequenceInterface;
+use DR\JBDiff\Entity\Chunk\InlineChunk;
 use DR\JBDiff\Entity\EquatableInterface;
-use DR\JBDiff\Entity\InlineChunk;
 use DR\JBDiff\Entity\Range;
 
 class DiffIterableUtil

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Tests\Unit\Util;
 
-use DR\JBDiff\Entity\WordChunk;
+use DR\JBDiff\Entity\Chunk\WordChunk;
 use DR\JBDiff\Util\Enumerator;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;

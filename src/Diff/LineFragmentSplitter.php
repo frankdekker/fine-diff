@@ -7,10 +7,10 @@ namespace DR\JBDiff\Diff;
 
 use DR\JBDiff\Comparison\Iterables\FairDiffIterableInterface;
 use DR\JBDiff\Entity\Character\CharSequenceInterface;
-use DR\JBDiff\Entity\InlineChunk;
+use DR\JBDiff\Entity\Chunk\InlineChunk;
+use DR\JBDiff\Entity\Chunk\NewLineChunk;
 use DR\JBDiff\Entity\LineFragmentSplitter\PendingChunk;
 use DR\JBDiff\Entity\LineFragmentSplitter\WordBlock;
-use DR\JBDiff\Entity\NewLineChunk;
 use DR\JBDiff\Entity\Range;
 use DR\JBDiff\Util\Strings;
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace DR\JBDiff\Tests\Unit;
 
 use DR\JBDiff\ByWord;
-use DR\JBDiff\Entity\NewLineChunk;
-use DR\JBDiff\Entity\WordChunk;
+use DR\JBDiff\Entity\Chunk\NewLineChunk;
+use DR\JBDiff\Entity\Chunk\WordChunk;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

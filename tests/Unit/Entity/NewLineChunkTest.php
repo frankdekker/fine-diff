@@ -3,11 +3,10 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Tests\Unit\Entity;
 
-use DR\JBDiff\Entity\NewLineChunk;
-use DR\JBDiff\Entity\WordChunk;
-use PHPUnit\Framework\TestCase;
-
+use DR\JBDiff\Entity\Chunk\NewLineChunk;
+use DR\JBDiff\Entity\Chunk\WordChunk;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(NewLineChunk::class)]
 class NewLineChunkTest extends TestCase

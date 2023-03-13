@@ -11,7 +11,7 @@ use DR\JBDiff\Comparison\Iterables\FairDiffIterableInterface;
 use DR\JBDiff\Diff\DiffIterableUtil;
 use DR\JBDiff\Diff\DiffToBigException;
 use DR\JBDiff\Entity\Character\CharSequenceInterface;
-use DR\JBDiff\Entity\InlineChunk;
+use DR\JBDiff\Entity\Chunk\InlineChunk;
 use LogicException;
 
 class AdjustmentPunctuationMatcher

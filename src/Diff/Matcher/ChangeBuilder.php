@@ -7,7 +7,7 @@ namespace DR\JBDiff\Diff\Matcher;
 
 use DR\JBDiff\Comparison\Iterables\DiffIterableInterface;
 use DR\JBDiff\Diff\DiffIterableUtil;
-use DR\JBDiff\Entity\Change;
+use DR\JBDiff\Entity\Change\Change;
 
 class ChangeBuilder extends AbstractChangeBuilder
 {

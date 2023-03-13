@@ -3,9 +3,10 @@
 // Copyright 2023 Digital Revolution BV (123inkt.nl). Use of this source code is governed by the Apache 2.0 license.
 declare(strict_types=1);
 
-namespace DR\JBDiff\Entity;
+namespace DR\JBDiff\Entity\Chunk;
 
 use DR\JBDiff\Entity\Character\CharSequenceInterface;
+use DR\JBDiff\Entity\EquatableInterface;
 
 class WordChunk implements InlineChunk
 {

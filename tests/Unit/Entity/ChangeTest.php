@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Tests\Unit\Entity;
 
-use DR\JBDiff\Entity\Change;
-use PHPUnit\Framework\TestCase;
-
+use DR\JBDiff\Entity\Change\Change;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Change::class)]
 class ChangeTest extends TestCase

@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Util;
 
-use DR\JBDiff\Entity\Change;
+use DR\JBDiff\Entity\Change\Change;
 
 class ChangeBuilder implements LCSBuilderInterface
 {

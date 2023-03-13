@@ -6,7 +6,7 @@ namespace DR\JBDiff\Tests\Unit\Diff\Iterable;
 use DR\JBDiff\Comparison\Iterables\DiffChangeDiffIterable;
 use DR\JBDiff\Comparison\Iterables\DiffIterableInterface;
 use DR\JBDiff\Comparison\Iterables\FairDiffIterableWrapper;
-use DR\JBDiff\Entity\Change;
+use DR\JBDiff\Entity\Change\Change;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
