@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace DR\JBDiff\Tests\Unit\Util;
 
+use DR\JBDiff\Entity\Character\CharSequence;
 use DR\JBDiff\Util\Character;
 use IntlChar;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Character::class)]
@@ -24,12 +26,32 @@ class CharacterTest extends TestCase
         static::assertTrue(Character::isContinuousScript(65600));
     }
 
-    /**
-     * @dataProvider punctuationDataProvider
-     */
+    #[DataProvider('punctuationDataProvider')]
     public function testIsPunctuation(string $char, bool $expected): void
     {
         static::assertSame($expected, Character::isPunctuation(IntlChar::ord($char)));
+    }
+
+    public function testIsLeadingSpace(): void
+    {
+        static::assertFalse(Character::isLeadingSpace(CharSequence::fromString("a"), -1));
+        static::assertFalse(Character::isLeadingSpace(CharSequence::fromString("a"), 0));
+        static::assertFalse(Character::isLeadingSpace(CharSequence::fromString("a"), 1));
+
+        static::assertTrue(Character::isLeadingSpace(CharSequence::fromString(" "), 0));
+        static::assertTrue(Character::isLeadingSpace(CharSequence::fromString("a\n b"), 2));
+        static::assertFalse(Character::isLeadingSpace(CharSequence::fromString("a b"), 1));
+    }
+
+    public function testIsTrailingSpace(): void
+    {
+        static::assertFalse(Character::isTrailingSpace(CharSequence::fromString("a"), -1));
+        static::assertFalse(Character::isTrailingSpace(CharSequence::fromString("a"), 0));
+        static::assertFalse(Character::isTrailingSpace(CharSequence::fromString("a"), 1));
+
+        static::assertTrue(Character::isTrailingSpace(CharSequence::fromString(" "), 0));
+        static::assertTrue(Character::isTrailingSpace(CharSequence::fromString("a \nb"), 1));
+        static::assertFalse(Character::isTrailingSpace(CharSequence::fromString("a b"), 1));
     }
 
     /**

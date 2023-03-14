@@ -98,7 +98,7 @@ class Character
     public static function isLeadingSpace(CharSequenceInterface $text, int $start): bool
     {
         $chars = $text->chars();
-        if ($start < 0 || $start === count($chars) || self::isWhiteSpace($chars[$start]) === false) {
+        if ($start < 0 || $start >= count($chars) || self::isWhiteSpace($chars[$start]) === false) {
             return false;
         }
 
@@ -121,7 +121,7 @@ class Character
     {
         $chars = $text->chars();
         $len   = count($chars);
-        if ($end < 0 || $end === $len || self::isWhiteSpace($chars[$end])) {
+        if ($end < 0 || $end >= $len || self::isWhiteSpace($chars[$end]) === false) {
             return false;
         }
 
