@@ -7,7 +7,7 @@
 
 # JBDiff
 
-A multi-line diff calcuation library based on Jetbrains' powerful IDE diff implementation.
+A multi-line diff calculation library based on Jetbrains' powerful IDE diff implementation.
 
 ## Installation
 ```bash
