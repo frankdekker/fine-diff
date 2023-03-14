@@ -6,7 +6,7 @@ namespace DR\JBDiff\Formatter;
 
 class LineBlockHtmlFormatter
 {
-    public function format(LineBlockIterator $iterator): string
+    public function format(LineBlockTextIterator $iterator): string
     {
         $html = "<!DOCTYPE html>\n";
         $html .= "<html lang=\"en\">\n";
@@ -15,11 +15,11 @@ class LineBlockHtmlFormatter
 
         $html .= '<pre style="font-family: Monospaced, \'Courier New\'">';
         foreach ($iterator as [$change, $text]) {
-            if ($change === LineBlockIterator::TEXT_UNCHANGED) {
+            if ($change === LineBlockTextIterator::TEXT_UNCHANGED) {
                 $html .= htmlspecialchars($text);
-            } elseif ($change === LineBlockIterator::TEXT_ADDED) {
+            } elseif ($change === LineBlockTextIterator::TEXT_ADDED) {
                 $html .= '<span style="background-color: #A6F3A6">' . htmlspecialchars($text) . '</span>';
-            } elseif ($change === LineBlockIterator::TEXT_REMOVED) {
+            } elseif ($change === LineBlockTextIterator::TEXT_REMOVED) {
                 $html .= '<span style="background-color: #F8CBCB">' . htmlspecialchars($text) . '</span>';
             }
         }

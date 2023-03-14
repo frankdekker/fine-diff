@@ -10,7 +10,7 @@ use Traversable;
 /**
  * @implements IteratorAggregate<array{0: self::TEXT_*, 1: string}>
  */
-class LineBlockIterator implements IteratorAggregate
+class LineBlockTextIterator implements IteratorAggregate
 {
     public const TEXT_REMOVED   = -1;
     public const TEXT_UNCHANGED = 0;

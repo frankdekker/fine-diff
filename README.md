@@ -28,7 +28,7 @@ $text2 = "abstract public function foo(): float {";
 $lineBlocks = JBDiff::compare($text1, $text2, ComparisonPolicy::DEFAULT);
 
 // to iterate over the string parts
-$iterator = new LineBlockIterator($text1, $text2, $lineBlocks);
+$iterator = new LineBlockTextIterator($text1, $text2, $lineBlocks);
 
 // format to html
 $html = (new LineBlockHtmlFormatter())->format($iterator);
