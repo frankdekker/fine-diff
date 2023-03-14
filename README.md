@@ -24,18 +24,19 @@ use DR\JBDiff\JBDiff;
 $text1 = "public function bar(): int {";
 $text2 = "abstract public function foo(): float {";
 
+// line block will contain all the information to partition the strings in removed, unchanged and added parts.
 $lineBlocks = JBDiff::compare($text1, $text2, ComparisonPolicy::DEFAULT);
+
+// to iterate over the string parts
+$iterator = new LineBlockIterator($text1, $text2, $lineBlocks);
+
+// format to html
+$html = (new LineBlockHtmlFormatter())->format($iterator);
 ```
-Output (formatted):
-```php
-[
-    '+abstract',
-    ' public function ',
-    '-bar(): int',
-    '+foo(): float',
-    '  {'
-]
-```
+
+<div style="background-color: #fff;">
+<pre style="font-family: Monospaced, 'Courier New'; color: #333"><span style="background-color: #A6F3A6">abstract </span>public function <span style="background-color: #F8CBCB">bar(): int</span><span style="background-color: #A6F3A6">foo(): float</span> {</pre>
+</div>
 
 ### Comparison policies
 - `DEFAULT`: the standard diff strategy and will take whitespace differences into account.
