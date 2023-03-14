@@ -39,24 +39,25 @@ class UniqueLCS
         /** @var array<int, int> $match */
         $match = [];
 
+        // TODO test algorithm against java variant
         for ($i = 0; $i < $this->count1; $i++) {
             $index = $this->start1 + $i;
-            $val   = $map[$this->first[$index]] ?? 0;
+            $val   = $map[$this->first[$index] ?? 0] ?? 0;
 
             if ($val === -1) {
                 continue;
             }
             if ($val === 0) {
-                $map[$this->first[$index]] = $i + 1;
+                $map[$this->first[$index] ?? 0] = $i + 1;
             } else {
-                $map[$this->first[$index]] = -1;
+                $map[$this->first[$index] ?? 0] = -1;
             }
         }
 
         $count = 0;
         for ($i = 0; $i < $this->count2; $i++) {
             $index = $this->start2 + $i;
-            $val   = $map[$this->second[$index]] ?? 0;
+            $val   = $map[$this->second[$index] ?? 0] ?? 0;
 
             if ($val === 0 || $val === -1) {
                 continue;

@@ -25,4 +25,6 @@ $text2 = '    public function findBy(array $predicates, SortInterface $sort, Con
 
 $lineBlocks = ByWordRt::compareAndSplit(CharSequence::fromString($text1), CharSequence::fromString($text2), ComparisonPolicy::DEFAULT);
 
-echo (new LineBlockHtmlFormatter())->format(new LineBlockIterator($text1, $text2, $lineBlocks));
+$output = (new LineBlockHtmlFormatter())->format(new LineBlockIterator($text1, $text2, $lineBlocks));
+
+file_put_contents('output.html', $output);
