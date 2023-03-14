@@ -12,8 +12,41 @@ use function dirname;
 
 class Character
 {
-    public const MIN_SUPPLEMENTARY_CODE_POINT = 0x010000;
-    public const IS_WHITESPACE                = ["\n" => true, "\t" => true, " " => true];
+    public const  MIN_SUPPLEMENTARY_CODE_POINT = 0x010000;
+    public const  IS_WHITESPACE                = ["\n" => true, "\t" => true, " " => true];
+    private const PUNCTUATION_CHARS            = [
+        33  => true,
+        34  => true,
+        35  => true,
+        36  => true,
+        37  => true,
+        38  => true,
+        39  => true,
+        40  => true,
+        41  => true,
+        42  => true,
+        43  => true,
+        44  => true,
+        45  => true,
+        46  => true,
+        47  => true,
+        58  => true,
+        59  => true,
+        60  => true,
+        61  => true,
+        62  => true,
+        63  => true,
+        64  => true,
+        91  => true,
+        92  => true,
+        93  => true,
+        94  => true,
+        96  => true,
+        123 => true,
+        124 => true,
+        125 => true,
+        126 => true,
+    ];
 
     public static function charCount(int $codePoint): int
     {
@@ -39,15 +72,11 @@ class Character
 
     public static function isPunctuation(int $codePoint): bool
     {
-        if ($codePoint === 95) { // exclude '_'
-            return false;
-        }
-
-        // TODO replace with lookup table
-        return ($codePoint >= 33 && $codePoint <= 47) || // !"#$%&'()*+,-./
-            ($codePoint >= 58 && $codePoint <= 64) ||    // :;<=>?@
-            ($codePoint >= 91 && $codePoint <= 96) ||    // [\]^_`
-            ($codePoint >= 123 && $codePoint <= 126);    // {|}~
+        // !"#$%&'()*+,-./
+        // :;<=>?@
+        // [\]^`
+        // {|}~
+        return self::PUNCTUATION_CHARS[$codePoint] ?? false;
     }
 
     public static function isWhiteSpaceCodePoint(int $codePoint): bool
