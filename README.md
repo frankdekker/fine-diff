@@ -34,9 +34,7 @@ $iterator = new LineBlockIterator($text1, $text2, $lineBlocks);
 $html = (new LineBlockHtmlFormatter())->format($iterator);
 ```
 
-<div style="background-color: #fff;">
-<pre style="font-family: Monospaced, 'Courier New'; color: #333"><span style="background-color: #A6F3A6">abstract </span>public function <span style="background-color: #F8CBCB">bar(): int</span><span style="background-color: #A6F3A6">foo(): float</span> {</pre>
-</div>
+![docs/example.png](docs/example.png)
 
 ### Comparison policies
 - `DEFAULT`: the standard diff strategy and will take whitespace differences into account.
