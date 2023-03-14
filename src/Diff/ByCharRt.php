@@ -36,8 +36,7 @@ class ByCharRt
         foreach ($text->chars() as $i => $char) {
             $codePoint = IntlChar::ord($char);
             // TODO does this correctly work?
-            // TODO and move this inside CharSequence to store the already known punctuations
-            if (Character::isPunctuation($codePoint)) {
+            if (Character::IS_PUNCTUATION_CODE_POINT[$codePoint] ?? false) {
                 $codePoints[] = $codePoint;
                 $offsets[]    = $i;
             }

@@ -14,7 +14,11 @@ class Character
 {
     public const  MIN_SUPPLEMENTARY_CODE_POINT = 0x010000;
     public const  IS_WHITESPACE                = ["\n" => true, "\t" => true, " " => true];
-    private const PUNCTUATION_CHARS            = [
+    // !"#$%&'()*+,-./
+    // :;<=>?@
+    // [\]^`
+    // {|}~
+    public const IS_PUNCTUATION_CODE_POINT = [
         33  => true,
         34  => true,
         35  => true,
@@ -47,6 +51,7 @@ class Character
         125 => true,
         126 => true,
     ];
+    private const IS_WHITESPACE_CODE_POINT = [9 => true, 10 => true, 32 => true];
 
     public static function charCount(int $codePoint): int
     {
@@ -55,7 +60,8 @@ class Character
 
     public static function isAlpha(int $codePoint): bool
     {
-        return self::isWhiteSpaceCodePoint($codePoint) === false && self::isPunctuation($codePoint) === false;
+        return (self::IS_WHITESPACE_CODE_POINT[$codePoint] ?? false) === false
+            && (self::IS_PUNCTUATION_CODE_POINT[$codePoint] ?? false) === false;
     }
 
     public static function isContinuousScript(int $codePoint): bool
@@ -72,16 +78,8 @@ class Character
 
     public static function isPunctuation(int $codePoint): bool
     {
-        // !"#$%&'()*+,-./
-        // :;<=>?@
-        // [\]^`
-        // {|}~
-        return self::PUNCTUATION_CHARS[$codePoint] ?? false;
-    }
 
-    public static function isWhiteSpaceCodePoint(int $codePoint): bool
-    {
-        return $codePoint < 128 && self::isWhiteSpace(IntlChar::chr($codePoint));
+        return self::IS_PUNCTUATION_CODE_POINT[$codePoint] ?? false;
     }
 
     public static function isWhiteSpace(string $char): bool

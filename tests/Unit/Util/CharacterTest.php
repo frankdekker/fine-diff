@@ -54,6 +54,13 @@ class CharacterTest extends TestCase
         static::assertFalse(Character::isTrailingSpace(CharSequence::fromString("a b"), 1));
     }
 
+    public function testTest(): void {
+        $test1 = IntlChar::ord("\n");
+        $test2 = IntlChar::ord("\t");
+        $test3 = IntlChar::ord(" ");
+        $text4 = true;
+    }
+
     /**
      * @return array<array<int|string>>
      */
