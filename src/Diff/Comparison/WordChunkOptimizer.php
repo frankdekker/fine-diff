@@ -17,7 +17,6 @@ use DR\JBDiff\Util\Character;
  * 1. Minimise amount of chunks
  *      good: "AX[AB]" - "[AB]"
  *      bad: "[A]XA[B]" - "[A][B]"
- *
  * 2. Minimise amount of modified 'sentences', where sentence is a sequence of words, that are not separated by whitespace
  *      good: "[AX] [AZ]" - "[AX] AY [AZ]"
  *      bad: "[AX A][Z]" - "[AX A]Y A[Z]"
@@ -97,11 +96,12 @@ class WordChunkOptimizer extends AbstractChunkOptimizer
             return true;
         }
 
+        $chars   = $text->chars();
         $offset1 = $word1->getOffset2();
         $offset2 = $word2->getOffset1();
 
         for ($i = $offset1; $i < $offset2; $i++) {
-            if (Character::isWhiteSpace($text->charAt($i))) {
+            if (Character::IS_WHITESPACE[$chars[$i]] ?? false) {
                 return true;
             }
         }
