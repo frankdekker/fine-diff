@@ -14,11 +14,8 @@ class Character
 {
     public const  MIN_SUPPLEMENTARY_CODE_POINT = 0x010000;
     public const  IS_WHITESPACE                = ["\n" => true, "\t" => true, " " => true];
-    // !"#$%&'()*+,-./
-    // :;<=>?@
-    // [\]^`
-    // {|}~
-    public const IS_PUNCTUATION_CODE_POINT = [
+    // !"#$%&'()*+,-./:;<=>?@[\]^`{|}~
+    public const  IS_PUNCTUATION_CODE_POINT = [
         33  => true,
         34  => true,
         35  => true,
@@ -51,7 +48,7 @@ class Character
         125 => true,
         126 => true,
     ];
-    private const IS_WHITESPACE_CODE_POINT = [9 => true, 10 => true, 32 => true];
+    private const IS_WHITESPACE_CODE_POINT  = [9 => true, 10 => true, 32 => true];
 
     public static function charCount(int $codePoint): int
     {
