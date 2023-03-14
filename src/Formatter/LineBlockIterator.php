@@ -64,6 +64,11 @@ class LineBlockIterator implements IteratorAggregate
 
                 $start = $offset->start1 + $fragment->getEndOffset1();
             }
+
+            if ($start < $block->offsets->end1) {
+                yield [self::TEXT_UNCHANGED, mb_substr($this->text1, $start, $block->offsets->end1)];
+                $start = $block->offsets->end1;
+            }
         }
 
         if ($start < mb_strlen($this->text1)) {
