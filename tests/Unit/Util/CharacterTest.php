@@ -29,7 +29,8 @@ class CharacterTest extends TestCase
     #[DataProvider('punctuationDataProvider')]
     public function testIsPunctuation(string $char, bool $expected): void
     {
-        static::assertSame($expected, Character::isPunctuation(IntlChar::ord($char)));
+        $codepoint = IntlChar::ord($char);
+        static::assertSame($expected, Character::IS_PUNCTUATION_CODE_POINT[$codepoint] ?? false);
     }
 
     public function testIsLeadingSpace(): void
@@ -52,13 +53,6 @@ class CharacterTest extends TestCase
         static::assertTrue(Character::isTrailingSpace(CharSequence::fromString(" "), 0));
         static::assertTrue(Character::isTrailingSpace(CharSequence::fromString("a \nb"), 1));
         static::assertFalse(Character::isTrailingSpace(CharSequence::fromString("a b"), 1));
-    }
-
-    public function testTest(): void {
-        $test1 = IntlChar::ord("\n");
-        $test2 = IntlChar::ord("\t");
-        $test3 = IntlChar::ord(" ");
-        $text4 = true;
     }
 
     /**

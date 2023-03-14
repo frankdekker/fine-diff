@@ -76,12 +76,6 @@ class Character
         return $table[$codePoint] ?? true;
     }
 
-    public static function isPunctuation(int $codePoint): bool
-    {
-
-        return self::IS_PUNCTUATION_CODE_POINT[$codePoint] ?? false;
-    }
-
     public static function isWhiteSpace(string $char): bool
     {
         // TODO optimize function call. Replace calls with const
