@@ -13,6 +13,13 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(Character::class)]
 class CharacterTest extends TestCase
 {
+    public function testCharCount(): void
+    {
+        static::assertSame(2, Character::charCount(65536));
+        static::assertSame(2, Character::charCount(65537));
+        static::assertSame(1, Character::charCount(65535));
+    }
+
     public function testIsContinuousScript(): void
     {
         // ascii character
